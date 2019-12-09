@@ -1,0 +1,66 @@
+Theorem (3.11) “¬ connection”: (¬ p ≡ q) ≡ (p ≡ ¬ q)
+Proof:
+    (¬ p ≡ q) ≡ (p ≡ ¬ q)
+  =⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ (p ≡ p) ≡ ¬ (q ≡ q)
+  =⟨ “Identity of ≡” ⟩
+    ¬ true ≡ ¬ true
+  =⟨ “Definition of `false`” ⟩
+    false ≡ false
+  =⟨ “Identity of ≡” ⟩
+    true
+
+Theorem (3.12) “Double negation”: ¬ ¬ p ≡ p
+Proof:
+    ¬ ¬ p ≡ p
+  =⟨ “¬ connection” ⟩
+    ¬ p ≡ ¬ p
+  =⟨ “Identity of ≡” ⟩
+    true
+
+Theorem (3.13) “Negation of `false`”: ¬ false ≡ true
+Proof:
+    ¬ false ≡ true
+  =⟨ “Definition of `false`” ⟩
+    ¬ ¬ true ≡ true
+  =⟨ “¬ connection” ⟩
+    ¬ true ≡ ¬ true
+  =⟨ “Identity of ≡” ⟩
+    true
+
+Theorem (A2.1.2):   a - b = - (b - a)
+Proof:
+    a - b = - (b - a)
+  =⟨ “Subtraction” ⟩
+    a + (- b) = - ((- a) + b)
+  =⟨ “Identity of +” ⟩
+    0 + (a + (- b)) = - ((- a) + b)
+  =⟨ “Unary minus” ⟩ 
+    ((- a) + b) + (- ((- a) + b)) + (a + (- b)) = - ((- a) + b) 
+  =⟨ “Associativity of +” ⟩
+    - ((- a) + b) + (a + (- a)) + (b + (- b)) = - ((- a) + b)
+  =⟨ “Unary minus” ⟩
+    - ((- a) + b) + 0 + 0 = - ((- a) + b)
+  =⟨ “Identity of +” ⟩
+    - ((- a) + b) = - ((- a) + b)
+  =⟨ “Reflexivity of =” ⟩
+    true
+    
+Theorem (A2.1.3) “Subtraction of addition”:   a - (b + c) = a - b - c
+Proof:
+    a - (b + c) = a - b - c
+  =⟨ “Subtraction” ⟩
+    a + (- (b + c)) = a + (- b) + (- c) 
+  =⟨ “Identity of +” ⟩
+    a + (- (b + c)) = a + (- b) + (- c) + 0
+  =⟨ “Unary minus” ⟩
+    a + (- (b + c)) = a + (- b) + (- c) + (b + c) + (- (b + c))
+  =⟨ “Associativity of +” ⟩
+    a + (- (b + c)) = a + b + (- b) + c + (- c) + (- (b + c))
+  =⟨ “Unary minus” ⟩
+    a + (- (b + c)) = a + 0 + 0 + (- (b + c))
+  =⟨ “Identity of +” ⟩
+    a + (- (b + c)) = a + (- (b + c))
+  =⟨ “Reflexivity of =” ⟩
+    true
+
