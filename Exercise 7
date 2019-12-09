@@ -1,0 +1,521 @@
+Theorem “Replacement in ∀”:
+    (∀ y ❙ R ∧ e = f • P[x ≔ e])
+  ≡ (∀ y ❙ R ∧ e = f • P[x ≔ f])
+Proof:
+    (∀ y ❙ R ∧ e = f • P[x ≔ e])
+  ≡⟨ “One-point rule for ∀” ⟩
+    (∀ y ❙ R ∧ e = f • (∀ x ❙ x = e • P))
+  ≡⟨ “Nesting for ∀” ⟩
+    (∀ y, x ❙ R ∧ e = f ∧ x = e • P)
+  ≡⟨ Substitution ⟩
+    (∀ y, x ❙ R ∧ e = f ∧ (x = z)[z ≔ e] • P)
+  ≡⟨ “Replacement” ⟩
+    (∀ y, x ❙ R ∧ e = f ∧ (x = z)[z ≔ f] • P)
+  ≡⟨ Substitution ⟩
+    (∀ y, x ❙ R ∧ e = f ∧ x = f • P)
+  ≡⟨ “Nesting for ∀” ⟩
+    (∀ y ❙ R ∧ e = f • (∀ x ❙ x = f • P))
+  ≡⟨ “One-point rule for ∀” ⟩
+    (∀ y ❙ R ∧ e = f • P[x ≔ f])
+
+Theorem (8.19) “Interchange of dummies for ∀”:
+    (∀ x ❙ R • (∀ y ❙ S • P))
+  ≡ (∀ y ❙ S • (∀ x ❙ R • P))
+Proof:
+    (∀ x ❙ R • (∀ y ❙ S • P))
+  ≡⟨ “Nesting for ∀” ⟩
+    (∀ x, y ❙ R ∧ S • P)
+  ≡⟨ “Symmetry of ∧” and “Dummy list permutation for ∀” ⟩
+    (∀ y, x ❙ S ∧ R • P)
+  ≡⟨ “Nesting for ∀” ⟩
+    (∀ y ❙ S • (∀ x ❙ R • P))
+    
+Theorem (9.3) (9.3a) “Trading for ∀”:
+   (∀ x ❙ R • P) ≡ (∀ x • ¬ R ∨ P)
+Proof:
+    (∀ x ❙ R • P)
+  ≡⟨ “Trading for ∀” ⟩
+    (∀ x • R ⇒ P)
+  ≡⟨ “Definition of Implication” ⟩
+    (∀ x • ¬ R ∨ 
+    
+Theorem (9.3) (9.3a) “Trading for ∀”:
+   (∀ x ❙ R • P) ≡ (∀ x • ¬ R ∨ P)
+Proof:
+    (∀ x ❙ R • P)
+  ≡⟨ “Trading for ∀” ⟩
+    (∀ x • R ⇒ P)
+  ≡⟨ “Definition of Implication” ⟩
+    (∀ x • ¬ R ∨ P)
+Theorem (9.3) (9.3a) “Trading for ∀”:
+   (∀ x ❙ R • P) ≡ (∀ x • ¬ R ∨ P)
+Proof:
+    (∀ x ❙ R • P)
+  ≡⟨ “Trading for ∀” ⟩
+    (∀ x • R ⇒ P)
+  ≡⟨ “Definition of Implication” ⟩
+    (∀ x • ¬ R ∨ P)
+
+Theorem (9.3) (9.3b) “Trading for ∀”:
+   (∀ x ❙ R • P) ≡ (∀ x • R ∧ P ≡ R)
+Proof:
+    (∀ x ❙ R • P)
+  ≡⟨ “Trading for ∀” ⟩
+    (∀ x • R ⇒ P)
+  ≡⟨ “Definition of Implication” ⟩
+    (∀ x • R ∧ P ≡ R)
+    
+Theorem (9.4) (9.4a) “Trading for ∀”:
+   (∀ x ❙ Q ∧ R • P) ≡ (∀ x ❙ Q • R ⇒ P)
+Proof:
+    (∀ x ❙ Q ∧ R • P)
+  ≡⟨ “Trading for ∀” ⟩
+    (∀ x • (Q ∧ R) ⇒ P)
+  ≡⟨ “Shunting” ⟩
+    (∀ x • Q ⇒ (R ⇒ P))
+  ≡⟨ “Trading for ∀” ⟩
+    (∀ x ❙ Q • R ⇒ P)
+ 
+Theorem (9.4) (9.4b) “Trading for ∀”:
+   (∀ x ❙ Q ∧ R • P) ≡ (∀ x ❙ Q • ¬ R ∨ P)
+Proof:
+    (∀ x ❙ Q ∧ R • P)
+  ≡⟨ “Trading for ∀” ⟩ 
+    (∀ x ❙ Q • R ⇒ P)
+  ≡⟨ “Definition of Implication” ⟩ 
+    (∀ x ❙ Q • ¬ R ∨ P)
+Theorem (9.13) “Instantiation”: (∀ x • P) ⇒ P[x ≔ E]
+Proof:
+    P[x ≔ E]
+  ≡⟨ “One-point rule for ∀” ⟩
+    (∀ x ❙ x = E • P)
+  ⇐⟨ “Range strengthening for ∀” ⟩
+    (∀ x ❙ true ∨ x = E • P)
+  ≡⟨ “Zero of ∨” ⟩
+    (∀ x ❙ true • P)
+  ≡⟨ “Reflexivity of ≡” ⟩
+    (∀ x • P)
+
+
+Theorem “Fresh ∀”: P ≡ (∀ x • P)
+Proof:
+  Using “Mutual implication”:
+    Subproof for `P ⇒ (∀ x • P)`:
+      Assuming `P`:
+          (∀ x • P)
+        ≡⟨ Assumption `P` ⟩
+          (∀ x • true)
+        ≡⟨ “True ∀ body” ⟩
+          true
+    Subproof for `(∀ x • P) ⇒ P`:
+          (∀ x • P)
+        ⇒⟨ “Instantiation” ⟩
+          P[x ≔ x]
+        ≡⟨ Substitution ⟩
+          P
+Theorem (1a): (∀ x : ℤ • f x < 3) ⇒ f 7 + 2 < 5
+Proof:
+    (∀ x : ℤ • f x < 3)
+  ⇒⟨ “Instantiation” ⟩
+    (f x < 3)[x ≔ 7]
+  ≡⟨ Substitution ⟩
+    f 7 < 3
+  ⇒⟨ “<-Monotonicity of +” ⟩
+    f 7 + 2 < 3 + 2
+  ≡⟨ Fact `3 + 2 = 5` ⟩
+    f 7 + 2 < 5
+    
+Theorem (1b): (∀ x : ℤ • f x < 3) ⇒ f 7 + f 9 < 8
+Proof:
+    (∀ x : ℤ • f x < 3)
+  ≡⟨ “Idempotency of ∧” ⟩
+    (∀ x : ℤ • f x < 3) ∧
+    (∀ x : ℤ • f x < 3)
+  ⇒⟨ “Monotonicity of ∧” with “Instantiation” ⟩
+    (f x < 3)[x ≔ 7] ∧
+    (∀ x : ℤ • f x < 3)
+  ⇒⟨ “Monotonicity of ∧” with “Instantiation” ⟩
+    (f x < 3)[x ≔ 7] ∧
+    (f x < 3)[x ≔ 9]
+  ≡⟨ Substitution ⟩
+    f 7 < 3 ∧ f 9 < 3
+  ⇒⟨ “<-Monotonicity of +” ⟩
+    f 7 + f 9 < 3 + 3
+  ≡⟨ “Identity of ∧” ⟩
+    f 7 + f 9 < 3 + 3 ∧ true
+  ≡⟨ Fact `3 + 3 < 8` ⟩
+    f 7 + f 9 < 3 + 3  ∧  3 + 3 < 8
+  ⇒⟨ “Transitivity of <” ⟩
+    f 7 + f 9 < 8
+
+Theorem (1b): (∀ x : ℤ • f x < 3) ⇒ f 7 + f 9 < 8
+Proof:
+    (∀ x : ℤ • f x < 3)
+  ≡⟨ “Instantiation” with (3.60) ⟩
+    (∀ x : ℤ • f x < 3) ∧
+    (f x < 3)[x ≔ 9]
+  ⇒⟨ “Monotonicity of ∧” with “Instantiation” ⟩
+    (f x < 3)[x ≔ 7] ∧ (f x < 3)[x ≔ 9]
+  ≡⟨ Substitution ⟩
+    f 7 < 3 ∧ f 9 < 3
+  ⇒⟨ “<-Monotonicity of +” ⟩
+    f 7 + f 9 < 3 + 3
+  ≡⟨ “Identity of ∧” ⟩
+    f 7 + f 9 < 3 + 3  ∧  true
+  ≡⟨ Fact `3 + 3 < 8` ⟩
+    f 7 + f 9 < 3 + 3  ∧  3 + 3 < 8
+  ⇒⟨ “Transitivity of <” ⟩
+    f 7 + f 9 < 8
+
+Theorem (1b): (∀ x : ℤ • f x < 3) ⇒ f 0 + 2 < 5
+Proof:
+  Assuming `(∀ x : ℤ • f x < 3)`:
+      f 0 + 2
+    <⟨ “<-Monotonicity of +” with assumption `(∀ x : ℤ • f x < 3)` ⟩
+      3 + 2
+    =⟨ Fact `3 + 2 = 5` ⟩
+      5
+
+Theorem (2a): (∀ x : ℤ • f x = f (x + 3)) ⇒ f 1 = f 7
+Proof:
+    ∀ x : ℤ • f x = f (x + 3)
+  ≡⟨ “Instantiation” with (3.60) ⟩
+    (∀ x : ℤ • f x = f (x + 3)) ∧
+    (f x = f (x + 3))[x ≔ 4]
+  ⇒⟨ “Monotonicity of ∧” with “Instantiation” ⟩
+    (f x = f (x + 3))[x ≔ 1] ∧
+    (f x = f (x + 3))[x ≔ 4]
+  ≡⟨ Substitution ⟩
+    (f 1 = f (1 + 3)) ∧ (f 4 = f (4 + 3))
+  ≡⟨ Fact `1 + 3 = 4`, Fact `4 + 3 = 7` ⟩
+    (f 1 = f 4) ∧ (f 4 = f 7)
+  ⇒⟨ “Transitivity of =” ⟩
+    f 1 = f 7
+
+Theorem (2b): (∀ x : ℤ • f x = f (x + 3)) ⇒ f 1 = f 7
+Proof:
+  Assuming `∀ x : ℤ • f x = f (x + 3)`:
+      f 1
+    =⟨ (2a) with assumption `∀ x : ℤ • f x = f (x + 3)` ⟩
+      f 7
+
+
+heorem (7): ∀ y : ℤ ❙ y ≠ 0 • pos (g y)
+Proof:
+  For any `y : ℤ` satisfying `y ≠ 0`:
+      pos (g y)
+    =⟨ (5) ⟩
+      pos (y · y)
+    =⟨ “Positivity of squares” with Assumption `y ≠ 0` ⟩
+      true
+      
+Theorem:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+Proof:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+  ⇐⟨ “∃-Introduction” ⟩
+    (∀ x : ℕ • x · y = y)[y ≔ 0]
+  ≡⟨ Substitution ⟩
+    ∀ x : ℕ • x · 0 = 0
+  ≡⟨ “Zero of ·” ⟩
+    ∀ x : ℕ • true  — This is “True ∀ body”
+
+Theorem:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+Proof:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+  ⇐⟨ “∃-Introduction” ⟩
+    (∀ x : ℕ • x · y = y)[y ≔ 0]
+  ≡⟨ Substitution ⟩
+    ∀ x : ℕ • x · 0 = 0
+  ≡⟨ Subproof:
+      For any `x : ℕ`:
+        x · 0 = 0  — This is “Zero of ·”
+    ⟩
+    true
+
+Theorem “Unboundedness of ℕ”: ∀ n : ℕ • ∃ m : ℕ • n < m
+Proof:
+    ∀ n : ℕ • ∃ m : ℕ • n < m
+  ⇐⟨ “Monotonicity of ∀” with “∃-Introduction” ⟩
+    ∀ n : ℕ • (n < m)[m ≔ suc n]
+  ≡⟨ Substitution ⟩
+    ∀ n : ℕ • n < suc n
+  ≡⟨ “Less than successor” ⟩
+    ∀ n : ℕ • true        — This is “True ∀ body”
+    
+ Theorem “Unboundedness of ℕ”: ∀ n : ℕ • ∃ m : ℕ • n < m
+Proof:
+  For any `n : ℕ`:
+      ∃ m : ℕ • n < m
+    ⇐⟨ “∃-Introduction” ⟩
+      (n < m)[m ≔ suc n]
+    ≡⟨ Substitution ⟩
+      n < suc n      — This is “Less than successor”
+
+-------------------------------
+Theorem:
+    ∃ y : ℕ • ∀ x : ℕ • y ≤ x
+Proof:
+    ∃ y : ℕ • ∀ x : ℕ • y ≤ x
+  ⇐⟨ “∃-Introduction” ⟩
+    (∀ x : ℕ • y ≤ x)[y ≔ 0]
+  ≡⟨ Substitution ⟩
+    (∀ x : ℕ • 0 ≤ x)
+  ≡⟨ “Zero is least element” ⟩
+    (∀ x : ℕ • true)
+  ≡⟨ “True ∀ body” ⟩
+    true
+
+Theorem:
+    ∀ y : ℕ • ∃ x : ℕ • y ≤ x
+Proof:
+  For any `y`:
+      ∃ x : ℕ • y ≤ x
+    ⇐⟨ “∃-Introduction” ⟩
+      (y ≤ x)[x ≔ y]
+    ≡⟨ Substitution, “Reflexivity of ≤” ⟩
+      true
+
+Theorem:
+    ∃ y : ℕ • ∀ x : ℕ • x + y = x
+Proof:
+    ∃ y : ℕ • ∀ x : ℕ • x + y = x
+  ⇐⟨ “∃-Introduction” ⟩
+    (∀ x : ℕ • x + y = x)[y ≔ 0]
+  ≡⟨ Substitution ⟩
+    (∀ x : ℕ • x + 0 = x)
+  ≡⟨ “Identity of +” ⟩
+    (∀ x : ℕ • x = x)
+  ≡⟨ “Reflexivity of =”, “True ∀ body” ⟩
+    true
+
+Theorem:
+    ∀ x : ℕ • ∃ y : ℕ • x + y = x
+Proof:
+  For any `x : ℕ`:
+      ∃ y : ℕ • x + y = x
+    ⇐⟨ “∃-Introduction” ⟩
+      (x + y = x)[y ≔ 0]
+    ≡⟨ Substitution, “Identity of +”, “Reflexivity of =” ⟩
+      true
+
+Theorem:
+    ∀ y : ℕ • ∃ x : ℕ • 1 · x = y
+Proof:
+    For any `y : ℕ`:
+        ∃ x : ℕ • 1 · x = y
+      ⇐⟨ “∃-Introduction” ⟩
+        (1 · x = y)[x ≔ y]
+      ≡⟨ Substitution ⟩
+        (1 · y = y)
+      ≡⟨ “Identity of ·”, “Reflexivity of =” ⟩
+        true
+
+Theorem “Existence of Upper Bounds”:
+    ∀ x : ℕ • ∀ y : ℕ •  ∃ z : ℕ • x ≤ z  ∧  y ≤ z
+Proof:
+  For any `x`, `y`:
+      ∃ z : ℕ • x ≤ z  ∧  y ≤ z
+    ⇐⟨ “∃-Introduction” ⟩
+      (x ≤ z  ∧  y ≤ z)[z ≔ x + y]
+    ≡⟨ Substitution ⟩
+      (x ≤ x + y  ∧  y ≤ x + y)
+    ≡⟨ “Identity of +” ⟩
+      (x + 0 ≤ x + y  ∧  0 + y ≤ x + y)
+    ≡⟨ “Isotonicity of +” ⟩
+      (0 ≤ y  ∧  0 ≤ x )
+    ≡⟨ “Zero is least element” ⟩
+      (true  ∧  true )
+    ≡⟨ “Idempotency of ∧” ⟩
+      true
+
+--------------------------------------------------------------
+Theorem “Factorial of one”: 1 ! = 1
+Proof:
+    1 !
+  =⟨ “Identity of +” ⟩
+    (0 + 1) !
+  =⟨ “Successor” ⟩
+    (suc 0) !
+  =⟨ “Definition of ! for `suc`” ⟩
+    (suc 0) · 0 !
+  =⟨ “Definition of ! for 0”, “Successor”, “Identity of +”, “Identity of ·” ⟩
+    1
+
+Theorem “nonzero factorial”: n ! ≠ 0
+Proof:
+  By induction on `n : ℕ`:
+    Base case:
+        0 ! ≠ 0
+      =⟨ “Definition of ! for 0” ⟩
+        1 ≠ 0
+      =⟨ Fact `1 ≠ 0` ⟩
+        true
+    Induction step `(suc n) ! ≠ 0`:
+        (suc n) ! ≠ 0 
+      =⟨ “Definition of ! for `suc`” ⟩
+        suc n · n ! ≠ 0
+      =⟨ “Definition of ≠” ⟩
+        ¬ (suc n · n ! = 0)
+      =⟨ “Right-zero of ·” ⟩
+        ¬ (suc n · n ! = suc n · 0)
+      =⟨ “Cancellation of multiplication with successor” ⟩
+        ¬ (n ! = 0)
+      =⟨ “Definition of ≠”, Induction hypothesis ⟩
+        true
+
+Corollary “Cancellation of multiplication with factorial”:
+   a · k ! = b · k !  ≡  a = b
+Proof:
+  By induction on `k : ℕ`:
+    Base case:
+        a · 0 ! = b · 0 !
+      =⟨ “Definition of ! for 0”, “Identity of ·” ⟩
+        a = b
+    Induction step `a · (suc k) ! = b · (suc k) ! ≡ a = b`:
+        a · (suc k) ! = b · (suc k) !
+      =⟨ “Definition of ! for `suc`” ⟩
+        a · suc k · k ! = b · suc k · k !
+      =⟨ “Symmetry of ·” ⟩
+        suc k · a · k ! = suc k · b · k !
+      =⟨ “Cancellation of multiplication with successor” ⟩
+        a · k ! = b · k !
+      =⟨ Induction hypothesis ⟩
+        a = b
+
+Theorem “Correctness of !”: n ! = factorial n
+Proof:
+  By induction on `n : ℕ`:
+     Base case:
+         0 ! = factorial 0
+       = ⟨ “Definition of ! for 0”, “Definition of factorial” ⟩
+         1 = (∏ i : ℕ ❙ 0 < i ≤ 0 • i )
+       = ⟨ “Zero is unique least element” ⟩
+         1 = (∏ i : ℕ ❙ 0 < i ∧ i = 0 • i )
+       = ⟨ Substitution, “Replacement” ⟩
+         1 = (∏ i : ℕ ❙ (0 < z)[z ≔ 0] ∧ i = 0 • i )
+       = ⟨ Substitution ⟩
+         1 = (∏ i : ℕ ❙ 0 < 0 ∧ i = 0 • i )
+       = ⟨ “Irreflexivity of <” ⟩
+         1 = (∏ i : ℕ ❙ false ∧ i = 0 • i )
+       = ⟨ “Zero of ∧”, “Empty range for ∏” ⟩
+         1 = 1
+       = ⟨ “Reflexivity of =” ⟩
+         true
+     Induction step `(suc n) ! = factorial (suc n)`:
+         (suc n) ! = factorial (suc n)
+       =⟨ “Definition of factorial” ⟩
+         (suc n) ! = (∏ i : ℕ ❙ 0 < i ≤ suc n • i)
+       =⟨ “Split off term at top using ≤” with “Zero is least element” ⟩
+         (suc n) ! = (∏ i : ℕ ❙ 0 < i ≤ n • i) · i[i ≔ suc n]
+       =⟨ Substitution ⟩
+         (suc n) ! = (∏ i : ℕ ❙ 0 < i ≤ n • i) · (suc n)
+       =⟨ “Definition of ! for `suc`” ⟩
+         (suc n) · n ! = (∏ i : ℕ ❙ 0 < i ≤ n • i) · (suc n)
+       =⟨ “Cancellation of multiplication with successor” ⟩
+         n ! = (∏ i : ℕ ❙ 0 < i ≤ n • i)
+       =⟨ “Definition of factorial”, Induction hypothesis ⟩
+         true
+
+
+Theorem “Monotonicity of ·”: b ≤ c ⇒ a · b ≤ a · c
+Proof:
+  By induction on `a : ℕ`:
+    Base case:
+        b ≤ c ⇒ 0 · b ≤ 0 · c
+      =⟨ “Zero of ·” ⟩
+        b ≤ c ⇒ 0 ≤ 0 
+      =⟨ “Reflexivity of ≤” ⟩
+        b ≤ c ⇒ true
+      =⟨ “Right-zero of ⇒” ⟩
+        true
+    Induction step `b ≤ c ⇒ suc a · b ≤ suc a · c`:
+      By induction on `b : ℕ`:
+        Base case:
+            0 ≤ c ⇒ suc a · 0 ≤ suc a · c
+          =⟨ “Zero of ·” ⟩
+            0 ≤ c ⇒ 0 ≤ suc a · c
+          =⟨ “Zero is least element” ⟩
+            0 ≤ c ⇒ true
+          =⟨ “Right-zero of ⇒” ⟩
+            true
+        Induction step `suc b ≤ c ⇒ suc a · suc b ≤ suc a · c`:
+          By induction on `c : ℕ`:
+            Base case:
+                suc b ≤ 0 ⇒ suc a · suc b ≤ suc a · 0
+              =⟨ “Zero of ·” ⟩
+                suc b ≤ 0 ⇒ suc a · suc b ≤ 0
+              =⟨ “Zero is unique least element” ⟩
+                suc b = 0 ⇒ suc a · suc b = 0
+              =⟨ “Zero of ·” ⟩
+                suc b = 0 ⇒ suc a · suc b = suc a · 0
+              =⟨ “Cancellation of multiplication with successor” ⟩
+                suc b = 0 ⇒ suc b = 0
+              =⟨ “Reflexivity of ⇒” ⟩
+                true
+            Induction step `suc b ≤ suc c ⇒ suc a · suc b ≤ suc a · suc c`:
+                suc b ≤ suc c ⇒ suc a · suc b ≤ suc a · suc c
+              =⟨ “Isotonicity of successor” ⟩
+                b ≤ c ⇒ suc a · suc b ≤ suc a · suc c
+              =⟨ “Definition of · for `suc`” ⟩
+                b ≤ c ⇒ suc a + b · suc a ≤ suc a + c · suc a
+              =⟨ “Isotonicity of +” ⟩
+                b ≤ c ⇒ b · suc a ≤ c · suc a
+              =⟨ Induction hypothesis `b ≤ c ⇒ b · suc a ≤ c · suc a` ⟩
+                true
+Theorem “Well-definedness of `fact`”: fact n = n !
+Proof: 
+  By induction on `n : ℕ`:
+    Base case:
+        fact 0 = 0 !
+      =⟨ “Definition of `fact`” ⟩
+        if 0 = 0 then 1 else 0 · fact (pred 0) fi = 0 !
+      =⟨ “Reflexivity of =” ⟩
+        if true then 1 else 0 · fact (pred 0) fi = 0 !
+      =⟨ “if true” ⟩
+        1 = 0 !
+      =⟨ “Definition of ! for 0” ⟩
+        1 = 1 — This is “Reflexivity of =” 
+    Induction step `fact (suc n) = (suc n) !`: 
+        fact (suc n)
+      =⟨ “Definition of `fact`” ⟩
+        if suc n = 0 then 1 else suc n · fact (pred (suc n)) fi
+      =⟨ “Zero is not successor” ⟩
+        if false then 1 else suc n · fact (pred (suc n)) fi
+      =⟨ “if false” ⟩
+        suc n · fact (pred (suc n))
+      =⟨ “Predecessor of successor” ⟩
+        suc n · fact (n)
+      =⟨ Induction hypothesis  ⟩
+        suc n · n !
+      =⟨ “Definition of ! for `suc`”  ⟩
+        (suc n) !
+ 
+Theorem “Factorial exceeds power”: 2 ** n ≤ (suc n) !
+Proof:
+  By induction on `n : ℕ`:
+    Base case:
+        2 ** 0 ≤ (suc 0) !
+      =⟨ “Definition of ** for 0” ⟩
+        1 ≤ (suc 0) !
+      =⟨ “Definition of ! for `suc`” ⟩
+        1 ≤ (suc 0) · 0 !
+      =⟨ “Definition of ! for 0”, “Successor”, “Identity of +”, “Identity of ·” ⟩
+        1 ≤ 1
+      =⟨ “Reflexivity of ≤” ⟩
+        true
+    Induction step `2 ** (suc n) ≤ (suc (suc n)) !`:
+        2 ** (suc n) ≤ (suc (suc n)) !
+      =⟨ “Definition of ** for `suc`” ⟩
+        2 · 2 ** n ≤ (suc (suc n)) !
+      =⟨ “Definition of ! for `suc`” ⟩
+        2 · 2 ** n ≤ (suc (suc n)) · (suc n) !
+      =⟨ “Successor” ⟩
+        2 · 2 ** n ≤ (n + (1 + 1)) · (suc n) !
+      =⟨ “Successor” ⟩
+        2 · (2 ** n) ≤ (n + suc 1) · (suc n) !
+      =⟨ Fact `suc 1 = 2` ⟩
+        2 · (2 ** n) ≤ (n + 2) · (suc n) !
+      =⟨ “Distributivity of · over +” ⟩
+        2 · (2 ** n) ≤ n · (suc n) ! + 2 · (suc n) !
