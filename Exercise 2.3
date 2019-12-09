@@ -1,0 +1,223 @@
+Theorem (3.36) “Symmetry of ∧”: p ∧ q ≡ q ∧ p
+Proof:
+    p ∧ q
+  =⟨ “Golden rule” ⟩
+    p ≡ q ≡ p ∨ q
+  =⟨ “Symmetry of =” ⟩
+    q ≡ p ≡ p ∨ q
+  =⟨ “Symmetry of ∨” ⟩
+    q ≡ p ≡ q ∨ p
+  =⟨ “Golden rule” ⟩
+    q ∧ p
+
+Theorem (3.37) “Associativity of ∧”: (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)
+Proof:
+    (p ∧ q) ∧ r
+  ≡⟨ (3.55) ⟩
+    p ≡ q ≡ r ≡ p ∨ q ≡ p ∨ r ≡ q ∨ r ≡ p ∨ q ∨ r
+  ≡⟨ “Symmetry of ∨” ⟩
+    p ≡ q ≡ r ≡ q ∨ p ≡ r ∨ p ≡ q ∨ r ≡ q ∨ r ∨ p
+  ≡⟨ “Symmetry of ≡” ⟩
+    q ≡ r ≡ p ≡ q ∨ r ≡ q ∨ p ≡ r ∨ p ≡ q ∨ r ∨ p
+  ≡⟨ (3.55) ⟩
+    (q ∧ r) ∧ p
+  ≡⟨ “Symmetry of ∧” ⟩
+    p ∧ (q ∧ r)
+
+Theorem (3.38) “Idempotency of ∧”: p ∧ p ≡ p
+Proof:
+    p ∧ p
+  =⟨ “Golden rule” ⟩
+    p ≡ p ≡ p ∨ p 
+  =⟨ “Idempotency of ∨” ⟩
+    p ≡ p ≡ p
+  =⟨ “Reflexivity of ≡” ⟩
+    p ≡ true
+  =⟨ “Identity of ≡” ⟩
+    p
+
+Theorem (3.39) “Identity of ∧”: p ∧ true ≡ p
+Proof:
+    p ∧ true
+  =⟨ “Golden rule” ⟩
+    p ≡ true ≡ p ∨ true
+  =⟨ “Zero of ∨” ⟩
+    p ≡ true ≡ true
+  =⟨ “Identity of ≡”⟩
+    p ≡ true 
+  =⟨ “Identity of ≡”⟩
+    p 
+    
+    Theorem (3.41) “Distributivity of ∧ over ∧”: p ∧ (q ∧ r) ≡ (p ∧ q) ∧ (p ∧ r)
+Proof:
+    p ∧ (q ∧ r)
+  =⟨ “Golden rule” ⟩
+    p ∧ (q ≡ r ≡ q ∨ r)
+  =⟨ “Golden rule” ⟩
+    p ≡ q ≡ r ≡ q ∨ r ≡ p ∨ (q ≡ r ≡ q ∨ r)
+  =⟨ “Distributivity of ∨ over ≡” ⟩
+    p ≡ q ≡ r ≡ q ∨ r ≡ p ∨ q ≡ p ∨ r ≡ p ∨ q ∨ r
+  =⟨ “Idempotency of ∨” ⟩
+    q ≡ r ≡ p ∨ p ≡ p ∨ p ∨ q ≡ q ∨ r ≡ p ∨ q ∨ r ≡ p ∨ p ∨ r
+  =⟨ “Identity of ≡” ⟩
+    true ≡ q ≡ r ≡ p ∨ p ≡ p ∨ p ∨ q ≡ q ∨ r ≡ p ∨ q ∨ r ≡ p ∨ p ∨ r
+  =⟨ “Reflexivity of ≡” ⟩
+    true ≡ true ≡ q ≡ r ≡ p ∨ p ≡ p ∨ p ∨ q ≡ q ∨ r ≡ p ∨ q ∨ r ≡ p ∨ p ∨ r
+  =⟨ “Reflexivity of ≡” ⟩
+    true ≡ true ≡ true ≡ q ≡ r ≡ p ∨ p ≡ p ∨ p ∨ q ≡ q ∨ r ≡ p ∨ q ∨ r ≡ p ∨ p ∨ r
+  =⟨ “Reflexivity of ≡” ⟩
+    q ≡ p ∨ q ≡ r ≡ p ∨ r ≡ ((p ∨ p ≡ q ∨ p ≡ p ∨ q ∨ p) ≡ (p ∨ r ≡ q ∨ r ≡ p ∨ q ∨ r) ≡ (p ∨ (p ∨ r) ≡ q ∨ (p ∨ r) ≡ p ∨ q ∨ r))
+  =⟨ “Distributivity of ∨ over ∨” ⟩
+    q ≡ p ∨ q ≡ r ≡ p ∨ r ≡ ((p ∨ p ≡ q ∨ p ≡ p ∨ q ∨ p) ≡ (p ∨ r ≡ q ∨ r ≡ p ∨ q ∨ r) ≡ (p ∨ (p ∨ r) ≡ q ∨ (p ∨ r) ≡ (p ∨ q) ∨ (p ∨ r)))
+  =⟨ “Distributivity of ∨ over ≡” ⟩
+    q ≡ p ∨ q ≡ r ≡ p ∨ r ≡ (((p ≡ q) ∨ p ≡ p ∨ q ∨ p) ≡ ((p ≡ q) ∨ r ≡ p ∨ q ∨ r) ≡ ((p ≡ q) ∨ (p ∨ r) ≡ (p ∨ q) ∨ (p ∨ r)))
+  =⟨ “Distributivity of ∨ over ≡” ⟩
+    q ≡ p ∨ q ≡ r ≡ p ∨ r ≡ ((p ≡ q ≡ p ∨ q) ∨ p ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ (p ≡ q ≡ p ∨ q) ∨ (p ∨ r))
+  =⟨ “Identity of ≡” ⟩
+    true ≡ q ≡ p ∨ q ≡ r ≡ p ∨ r ≡ ((p ≡ q ≡ p ∨ q) ∨ p ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ (p ≡ q ≡ p ∨ q) ∨ (p ∨ r))
+  =⟨ “Reflexivity of ≡” ⟩
+    p ≡ q ≡ p ∨ q ≡ p ≡ r ≡ p ∨ r ≡ ((p ≡ q ≡ p ∨ q) ∨ p ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ (p ≡ q ≡ p ∨ q) ∨ (p ∨ r))
+  =⟨ “Distributivity of ∨ over ≡” ⟩
+    p ≡ q ≡ p ∨ q ≡ p ≡ r ≡ p ∨ r ≡((p ≡ q ≡ p ∨ q) ∨ (p ≡ r ≡ p ∨ r))
+  =⟨ “Golden rule” ⟩
+    (p ≡ q ≡ p ∨ q) ∧ (p ≡ r ≡ p ∨ r) 
+  =⟨ “Golden rule” ⟩
+    (p ∧ q) ∧ (p ∧ r)
+    
+Theorem (3.42) “Contradiction”: p ∧ ¬ p ≡ false
+Proof:
+    p ∧ ¬ p
+  =⟨ “Golden rule” ⟩
+    p ≡ ¬ p ≡ p ∨ ¬ p
+  =⟨ “Excluded middle” ⟩
+    p ≡ ¬ p ≡ true
+  =⟨ “Identity of ≡” ⟩
+    p ≡ ¬ p 
+  =⟨ “Symmetry of ≡” ⟩
+    ¬ p ≡ p
+  =⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ (p ≡ p)
+  =⟨ “Reflexivity of ≡” ⟩
+    ¬ (true)
+  =⟨ “Definition of `false`” ⟩
+    false
+    
+    \
+Theorem (3.48): p ∧ q ≡ p ∧ ¬ q ≡ ¬ p
+Proof:
+    p ∧ q ≡ p ∧ ¬ q
+  =⟨ “Golden rule” ⟩
+    p ≡ q ≡ p ∨ q ≡ p ≡ ¬ q ≡ p ∨ ¬ q
+  =⟨ “Reflexivity of ≡” ⟩
+    true ≡ q ≡ p ∨ q ≡ ¬ q ≡ p ∨ ¬ q
+  =⟨ “Symmetry of ≡” ⟩
+    true ≡ q ≡ p ∨ q ≡ p ∨ ¬ q ≡ ¬ q
+  =⟨ (3.32) ⟩
+    true ≡ q ≡ p ≡ ¬ q
+  =⟨ “Identity of ≡” ⟩
+    p ≡ ¬ q ≡ q
+  =⟨ “Commutativity of ¬ with ≡” ⟩
+    p ≡ ¬ (q ≡ q)
+  =⟨ “Reflexivity of ≡” ⟩
+    p ≡ ¬ (true)
+  =⟨ “Definition of `false`” ⟩
+    p ≡ false
+  =⟨ (3.15) ⟩
+    ¬ p
+
+
+Theorem (3.49) “Semi-distributivity of ∧ over ≡”: p ∧ (q ≡ r) ≡ p ∧ q ≡ p ∧ r ≡ p
+Proof:
+    p ∧ (q ≡ r) ≡ p
+  =⟨ “Golden rule” ⟩  
+    p ≡ q ≡ r ≡ p ∨ (q ≡ r) ≡ p
+  =⟨ “Distributivity of ∨ over ≡” ⟩  
+    p ≡ q ≡ p ∨ q ≡ p ≡ r ≡  p ∨ r
+  ≡⟨ “Golden rule” ⟩
+    p ∧ q ≡ p ∧ r
+    
+    
+Theorem (3.45) “Distributivity of ∨ over ∧”: p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)
+Proof:
+    p ∨ (q ∧ r)
+  =⟨ “Golden rule” ⟩
+    p ∨ (q ≡ r ≡ q ∨ r)
+  =⟨ “Distributivity of ∨ over ≡” ⟩
+    p ∨ (q ≡ r) ≡ p ∨ q ∨ r
+  =⟨ “Distributivity of ∨ over ≡” ⟩
+    p ∨ q ≡ p ∨ r ≡ p ∨ q ∨ r
+  =⟨ “Idempotency of ∨” ⟩
+    p ∨ q ≡ p ∨ r ≡ p ∨ p ∨ q ∨ r
+  =⟨ “Golden rule” ⟩
+    (p ∨ q) ∧ (p ∨ r)
+    
+Theorem (3.46) “Distributivity of ∧ over ∨”: p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)
+Proof:
+    (p ∧ q) ∨ (p ∧ r)
+  =⟨ “Distributivity of ∨ over ∧” ⟩
+    (p ∨ (p ∧ r)) ∧ (q ∨ (p ∧ r))
+  =⟨ “Absorption” ⟩
+    (p) ∧ (q ∨ (p ∧ r))
+  =⟨ “Distributivity of ∨ over ∧” ⟩
+    (p) ∧ (q ∨ p) ∧ (q ∨ r)
+  =⟨ “Associativity of ∧” ⟩
+    ((p) ∧ (q ∨ p)) ∧ (q ∨ r)
+  =⟨ “Symmetry of ∨” ⟩
+    ((p) ∧ (p ∨ q)) ∧ (q ∨ r)
+  =⟨ “Absorption” ⟩
+    p ∧ (q ∨ r)
+
+  
+Theorem “Irreflexivity of ≢”: (p ≢ p) ≡ false
+Proof:
+    (p ≢ p)
+  =⟨ “Definition of ≢” ⟩
+    ¬ (p ≡ p)
+  =⟨ “Reflexivity of ≡” ⟩
+    ¬ (true)
+  =⟨ “Definition of `false`” ⟩
+    false
+
+Lemma (A3.2a): (p ≡ (q ≢ r)) ⇒⁅ q := (q ≢ r) ⁆  (p ≡ q)
+Proof:
+    (p ≡ (q ≢ r))
+  =⟨ Substitution ⟩
+    (p ≡ q)[q ≔ (q ≢ r)]
+  ⇒⁅ q := (q ≢ r) ⁆  ⟨ “Assignment” ⟩
+    (p ≡ q)
+
+
+Lemma (A3.2b): (p ≡ q) ⇒⁅ q := (q ≢ r) ⁆  (p ≡ (q ≢ r))
+Proof:
+     (p ≡ q)
+  =⟨ “Identity of ≢” ⟩
+     (p ≡ (q ≢  false))
+  =⟨ “Definition of `false`” ⟩
+     (p ≡ (q ≢  ¬ (true)))
+  =⟨ “Reflexivity of ≡” ⟩
+     (p ≡ (q ≢  ¬ (r ≡ r)))
+  =⟨ “Definition of ≢” ⟩
+     (p ≡ (q ≢  (r ≢  r)))
+  =⟨ “Associativity of ≢” ⟩
+    (p ≡ ((q ≢ r) ≢ r))
+  =⟨ Substitution ⟩
+    ((p ≡ (q ≢ r)))[q ≔ (q ≢ r)]
+  ⇒⁅ q := (q ≢ r) ⁆ ⟨ “Assignment” ⟩
+    (p ≡ (q ≢ r))
+    
+Lemma (A3.2c): (p ≡ r) ∧ ¬ q ⇒⁅ q := (q ≢ r) ⁆  (p ≡ r) ∧ (p ≡ q)
+Proof:
+    (p ≡ r) ∧ ¬ q
+  =⟨ “¬ connection” ⟩
+    (p ≡ r) ∧ (r ≡ (¬ r ≡ q))
+  =⟨ (3.14) ⟩
+    (p ≡ r) ∧ (r ≡ (r ≢  q))
+  =⟨ “Symmetry of ≢” ⟩
+    (p ≡ r) ∧ (r ≡ (q ≢ r))
+  =⟨ “Replacement” ⟩
+    (p ≡ r) ∧ (p ≡ (q ≢ r))
+  =⟨ Substitution ⟩
+    ((p ≡ r) ∧ (p ≡ q))[q ≔ (q ≢ r)]
+  ⇒⁅ q := (q ≢ r) ⁆ ⟨ “Assignment” ⟩
+    (p ≡ r) ∧ (p ≡ q)
+
