@@ -1,0 +1,141 @@
+Theorem “Zero or successor of predecessor”: n = 0 ∨ n = suc (pred n)
+Proof:
+  By induction on `n : ℕ`: 
+    Base case:
+        0 = 0 ∨ 0 = suc (pred 0)
+      ≡⟨ “Reflexivity of =” ⟩
+        true ∨ 0 = suc (pred 0)
+      ≡⟨ “Zero of ∨” ⟩
+        true
+    Induction step `suc n = 0 ∨ suc n = suc (pred (suc n))`:
+        suc n = 0 ∨ suc n = suc (pred (suc n))
+      ≡⟨ “Zero is not successor” ⟩
+        false ∨ suc n = suc (pred (suc n))
+      ≡⟨ “Identity of ∨” ⟩
+        suc n = suc (pred (suc n))
+      ≡⟨ “Predecessor of successor” ⟩
+        suc n = suc n
+      ≡⟨ “Reflexivity of =” ⟩
+        true
+
+Theorem “Right-identity of subtraction”: m - 0 = m
+Proof:
+  By cases: `m = 0`, `m = suc (pred m)`
+    Completeness: By “Zero or successor of predecessor”
+    Case `m = 0`:
+        m - 0 = m
+      ≡⟨ Assumption `m = 0` ⟩
+        0 - 0 = 0
+      — This is “Subtraction from zero”
+    Case `m = suc (pred m)`:
+        m - 0
+      =⟨ Assumption `m = suc (pred m)` ⟩
+        (suc (pred m)) - 0
+      =⟨ “Subtraction of zero from successor” ⟩
+        suc (pred m)
+      =⟨ Assumption `m = suc (pred m)` ⟩
+        m
+
+Theorem “Subtraction from multiplication with successor”: m · (suc n) - m = m · n
+Proof:
+  By cases: `m = 0`, `m = suc (pred m)`
+    Completeness: By “Zero or successor of predecessor”
+    Case `m = 0`:
+        m · (suc n) - m = m · n
+      ≡⟨ Assumption `m = 0` ⟩
+        0 · (suc n) - m = 0 · n 
+      ≡⟨ “Zero of ·” ⟩
+        0 - m = 0
+      ≡⟨ “Subtraction from zero” ⟩
+        true
+    Case `m = suc(pred m)`:
+        m · (suc n) - m = m · n
+      ≡⟨ “Multiplying the successor” ⟩
+        m · n + m - m = m · n
+      ≡⟨ “Subtraction after addition” ⟩
+        m · n = m · n
+      ≡⟨ “Reflexivity of =” ⟩
+        true
+      
+Theorem “Zero is unique least element”:
+    a ≤ 0  ≡  a = 0
+Proof:
+  By cases: `a = 0`, `a = suc (pred a)`
+    Completeness: By “Zero or successor of predecessor”
+    Case `a = 0`:
+        a ≤ 0  ≡  a = 0
+      ≡⟨ Assumption `a = 0` ⟩ 
+        0 ≤ 0  ≡  0 = 0
+      ≡⟨ “Reflexivity of ≤” ⟩
+        true ≡ 0 = 0
+      ≡⟨ “Reflexivity of =” ⟩
+        true ≡ true 
+      ≡⟨ “Reflexivity of ≡” ⟩
+        true
+    Case `a = suc (pred a)`:
+        a ≤ 0  ≡  a = 0
+      ≡⟨ Assumption `a = suc (pred a)` ⟩
+        suc (pred a) ≤ 0 ≡ suc (pred a) = 0
+      ≡⟨ “Successor is not at most zero” ⟩
+        false ≡ suc (pred a) = 0
+      ≡⟨ “Zero is not successor” ⟩
+        false ≡ false
+      ≡⟨ “Reflexivity of ≡” ⟩
+        true
+        
+ Theorem “Zero sum”:
+    0 = a + b  ≡  0 = a  ∧  0 = b
+Proof:
+  By cases: `a = 0`, `a = suc (pred a)`
+    Completeness: By “Zero or successor of predecessor”
+    Case `a = 0`:
+        0 = a + b  ≡  0 = a  ∧  0 = b
+      ≡⟨ Assumption `a  = 0` ⟩
+        0 = 0 + b  ≡  0 = 0  ∧  0 = b
+      ≡⟨ “Reflexivity of =” ⟩
+        0 = 0 + b  ≡  true  ∧  0 = b
+      ≡⟨ “Identity of ∧” ⟩
+        0 = 0 + b  ≡  0 = b
+      ≡⟨ “Identity of +” ⟩
+        0 = b  ≡  0 = b
+      ≡⟨ “Reflexivity of ≡” ⟩
+        true
+    Case `a = suc (pred a)`:
+        0 = a + b  ≡  0 = a  ∧  0 = b
+      ≡⟨ Assumption `a = suc (pred a)` ⟩
+        0 = suc (pred a) + b  ≡  0 = suc (pred a)  ∧  0 = b
+      ≡⟨ “Zero is not successor” ⟩
+        0 = suc (pred a) + b  ≡  false  ∧  0 = b
+      ≡⟨ “Zero of ∧” ⟩
+        0 = suc (pred a) + b  ≡  false
+      ≡⟨ “Adding the successor” ⟩
+        0 = suc ((pred a) + b)  ≡  false
+      ≡⟨ “Zero is not successor” ⟩
+        false  ≡  false
+      ≡⟨ “Reflexivity of ≡” ⟩
+        true
+
+Theorem “Zero is <-least element”: 0 < a ∨ 0 = a
+Proof:
+  By cases: `a = 0`, `a = suc(pred a)`
+    Completeness: By “Zero or successor of predecessor”
+    Case `a = 0`:
+        0 < a ∨ 0 = a
+      ≡⟨ Assumption `a = 0` ⟩
+        0 < 0 ∨ 0 = 0
+      ≡⟨ “Nothing is less than zero” ⟩
+        false ∨ 0 = 0
+      ≡⟨ “Identity of ∨” ⟩
+        0 = 0
+      ≡⟨ “Reflexivity of =” ⟩
+        true
+    Case `a = suc(pred a)`:
+        0 < a ∨ 0 = a
+      ≡⟨ Assumption `a = suc(pred a)` ⟩
+        0 < suc(pred a) ∨ 0 = suc(pred a)
+      ≡⟨ “Zero is less than successor” ⟩
+        true ∨ 0 = suc(pred a)
+      ≡⟨ “Zero of ∨” ⟩
+        true
+
+ 
