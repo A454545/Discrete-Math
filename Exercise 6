@@ -1,0 +1,105 @@
+Theorem (15.34) “Positivity of squares”: b ≠ 0 ⇒ pos (b · b)
+Proof:
+  Assuming `b ≠ 0`:
+    By cases: `pos b`, `¬ pos b`
+      Completeness: By “Excluded middle”
+      Case `pos b`:
+        By “Positivity under ·” (15.31) with assumption `pos b`
+      Case `¬ pos b`:
+          pos (b · b)
+        ≡⟨ (15.23) `- a · - b = a · b` ⟩
+          pos ((- b) · (- b))
+        ⇐⟨ “Positivity under ·” (15.31) ⟩
+          pos (- b) ∧ pos (- b)
+        ≡⟨ “Idempotency of ∧”, “Double negation” ⟩
+          ¬ ¬ pos (- b)
+        ≡⟨ “Positivity under unary minus” (15.33) with assumption `b ≠ 0` ⟩
+          ¬ pos b      — This is assumption `¬ pos b`
+
+Theorem (15.34) “Positivity of squares”: b ≠ 0 ⇒ pos (b · b)
+Proof:
+  Assuming `b ≠ 0`:
+    By cases: `pos b`, `¬ pos b`
+      Completeness: By “LEM”
+      Case `pos b`:
+          pos b ∧ pos b ⇒ pos (b · b) — This is (15.31)
+        ≡⟨ Assumption `pos b` ⟩
+          true ∧ true ⇒ pos (b · b)
+        ≡⟨ “Identity of ∧”, “Left-identity of ⇒” ⟩
+          pos (b · b)
+      Case `¬ pos b`:
+          true
+        ≡⟨ Assumption `¬ pos b` ⟩
+          ¬ pos b
+        ≡⟨ (15.33b) with Assumption `b ≠ 0` ⟩
+          pos (- b)
+        ≡⟨ “Idempotency of ∧” ⟩
+          pos (- b) ∧ pos (- b)
+        ⇒⟨ “Positivity under ·” ⟩
+          pos ((- b) · (- b))
+        ≡⟨ (15.23) ⟩
+          pos (b · b)
+
+Theorem “Cancellation of unary minus”: - a = - b  ≡  a = b
+Proof:
+  Using “Mutual implication”:
+    Subproof for `a = b  ⇒  - a = - b`:
+      Assuming `a = b`:
+          - a = - b
+        ≡⟨ Assumption `a = b` ⟩ 
+          - b = - b
+        ≡⟨ “Reflexivity of =” ⟩ 
+          true
+    Subproof for `- a = - b  ⇒  a = b`:
+      Assuming `- a = - b`:
+          a = b
+        ≡⟨ “Cancellation of +” ⟩
+          a + (- a) = b + (- a)
+        ≡⟨ “Unary minus” ⟩
+          0 = b + (- a)
+        ≡⟨ Assumption `- a = - b` ⟩
+          0 = b + (- b)
+        ≡⟨ “Unary minus” ⟩
+          0 = 0
+        ≡⟨ “Reflexivity of =” ⟩
+          true
+
+Theorem (15.41) (15.41a) “Transitivity” “Transitivity of <”:
+   a < b  ∧  b < c  ⇒  a < c
+Proof:
+    a < b  ∧  b < c
+  ≡⟨ “Definition of <” ⟩
+    pos(b - a) ∧ pos(c - b)
+  ⇒⟨ “Positivity under +” ⟩
+    pos((b - a) + (c - b))
+  ≡⟨ “Subtraction” ⟩
+    pos((b + (- a)) + (c + (- b)))
+  ≡⟨ “Reflexivity of ≡” ⟩
+    pos(b + (- a) + c + (- b))
+  ≡⟨ “Unary minus” ⟩
+    pos((- a) + c + 0)
+  ≡⟨ “Identity of +” ⟩
+    pos((- a) + c )
+  ≡⟨ “Subtraction” ⟩
+    pos(c - a)
+  ≡⟨ “Definition of <” ⟩
+    a < c
+
+  
+Theorem (15.41) (15.41b) “Transitivity” “Transitivity of ≤ with <”:
+   a ≤ b  ∧  b < c  ⇒  a < c
+Proof:
+    a ≤ b  ∧  b < c
+  ≡⟨ “Definition of ≤” ⟩
+    (a < b ∨ a = b) ∧  b < c
+  ≡⟨ “Distributivity of ∧ over ∨” ⟩
+    (a < b ∧  b < c) ∨ (a = b ∧ b < c)
+  ⇒⟨ “Monotonicity of ∨” with “Transitivity of <” ⟩
+    (a < c) ∨ (a = b ∧ b < c)
+  ≡⟨ Substitution ⟩
+    (a < c) ∨ (a = b ∧ (z < c)[z ≔ b])
+  ≡⟨ “Replacement”, Substitution ⟩
+    (a < c) ∨ (a = b ∧ (a < c))
+  ≡⟨ “Absorption” ⟩
+    a < c
+
