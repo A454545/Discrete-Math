@@ -1,0 +1,90 @@
+Theorem (3.61) “Contrapositive”: p ⇒ q ≡ ¬ q ⇒ ¬ p
+Proof:
+    p ⇒ q ≡ ¬ q ⇒ ¬ p
+  =⟨ (3.57) ⟩
+    p ∨ q ≡ q ≡ ¬ q ∨ ¬ p ≡ ¬ p
+  =⟨ (3.32) ⟩
+    p ∨ q ≡ q ≡ q ∨ ¬ p 
+  =⟨ “Double negation” ⟩
+    ¬ (¬ p) ∨ q ≡ q ≡ q ∨ ¬ p 
+  =⟨ (3.32) ⟩
+    (¬ p) ∨ q ≡ q ∨ ¬ p 
+  =⟨ “Reflexivity of ≡” ⟩
+    true
+
+heorem (H7.1a): p ⇒ q ≡ ¬ (p ∧ ¬ q)
+Proof:
+    p ⇒ q ≡ ¬ (p ∧ ¬ q)
+  =⟨ (3.48) ⟩
+    p ⇒ q ≡ ¬ (p ∧ q ≡ ¬ p)
+  =⟨ (3.60) ⟩
+    p ∧ q  ≡  p ≡ ¬ (p ∧ q ≡ ¬ p)
+  =⟨ “Definition of ≢” ⟩
+    p ∧ q  ≡  p ≡ p ∧ q ≢  ¬ p
+  =⟨ (3.14) ⟩
+    p ∧ q  ≡  p ≡ p ∧ q ≡ ¬ ¬ p
+  =⟨ “Double negation” ⟩
+    p ∧ q ≡ p ≡ p ∧ q ≡ p
+  =⟨ “Reflexivity of ≡” ⟩
+    true
+    
+Calculation:
+    ∑ i : ℕ ❙ 10 ≤ i ≤ 20 • (12 - i) + (i - 12)
+  =⟨ Quantification expansion ⟩
+    ((12 - i) + (i - 12))[i ≔ 10]
+    + ((12 - i) + (i - 12))[i ≔ 11]
+    + ((12 - i) + (i - 12))[i ≔ 12]
+    + ((12 - i) + (i - 12))[i ≔ 13]
+    + ((12 - i) + (i - 12))[i ≔ 14]
+    + ((12 - i) + (i - 12))[i ≔ 15]
+    + ((12 - i) + (i - 12))[i ≔ 16]
+    + ((12 - i) + (i - 12))[i ≔ 17]
+    + ((12 - i) + (i - 12))[i ≔ 18]
+    + ((12 - i) + (i - 12))[i ≔ 19]
+    + ((12 - i) + (i - 12))[i ≔ 20]
+  =⟨ Substitution, evaluation ⟩
+    39
+
+Calculation:
+    15 - (3 + 4)
+  ≤⟨ “≤-Antitonicity of -” with
+     “≤-Monotonicity of +” with Fact `2 ≤ 3` ⟩
+    15 - (2 + 4)
+  =⟨ Fact `4 = 7 - 3` ⟩
+    15 - (2 + (7 - 3))
+  ≤⟨ “≤-Antitonicity of -” with
+     “≤-Monotonicity of +” with
+     “≤-Antitonicity of -” with Fact `3 ≤ 4` ⟩
+    15 - (2 + (7 - 4))
+
+Calculation:
+    5 + (u - 7)
+  ≤⟨ “≤-Monotonicity of +” with Fact `5 ≤ 6` ⟩
+    6 + (u - 7)
+  =⟨ “Mutual associativity of + and -” ⟩
+    (6 + u) - 7
+  ≤⟨ “≤-Antitonicity of -” with Fact `5 ≤ 7` ⟩
+    (6 + u) - 5
+  ≤⟨ “≤-Monotonicity of -” with “≤-Monotonicity of +” with Fact `6 ≤ 7` ⟩
+    (7 + u) - 5
+  =⟨ “Mutual associativity of + and -” ⟩
+    7 + (u - 5)
+  ≤⟨ “≤-Monotonicity of +” with “≤-Antitonicity of -” with Fact `4 ≤ 5` ⟩
+    7 + (u - 4)
+
+Calculation:
+    (a ≤ b  ≡  a · d ≤ b · d)[a, b, d ≔ 1, 2, - 1]
+  ≡⟨ Substitution ⟩
+    1 ≤ 2  ≡  1 · (- 1) ≤ 2 · (- 1)
+  ≡⟨ Fact `- 1 = 1 · (- 1)` ⟩
+    1 ≤ 2  ≡  - 1 ≤ 2 · (- 1)
+  ≡⟨ Fact `- 2 = 2 · (- 1)` ⟩
+    1 ≤ 2  ≡  - 1 ≤ - 2
+  ≡⟨ Fact `1 ≤ 2` ⟩
+    true  ≡  - 1 ≤ - 2
+  ≡⟨ Fact `¬ (- 1 ≤ - 2)` ⟩ 
+    true  ≡  false
+  ≡⟨ “Reflexivity of ≡” ⟩
+    false
+
+
