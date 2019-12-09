@@ -1,0 +1,80 @@
+Theorem (15.17) “Self-inverse of unary minus”:
+   - (- a) = a
+Proof:
+    (- (- a))
+  =⟨ “Identity of +” ⟩
+    (- (- a)) + 0
+  =⟨ “Unary minus” ⟩
+    (- (- a)) + (a + (- a))
+  =⟨ “Symmetry of +” ⟩
+    (- (- a)) + ((- a) + a)
+  =⟨ “Associativity of +” ⟩
+    ((- (- a)) + (- a)) + a
+  =⟨ “Symmetry of +” ⟩
+    ((- a) + (- (- a))) + a
+  =⟨ “Unary minus” ⟩
+    0 + a
+  =⟨ “Identity of +” ⟩
+    a
+
+Theorem (15.18) “Fixpoint of unary minus”: - 0 = 0
+Proof:
+    - 0 
+  =⟨ “Identity of +” ⟩
+    0 + - 0 
+  =⟨ “Unary minus” ⟩
+    0
+
+Theorem (15.20): - a = (- 1) · a
+Proof:
+    - a = (- 1) · a
+  =⟨ “Identity of +” ⟩
+    0 + - a  = (- 1) · a
+  =⟨ “Unary minus” ⟩
+    ((1) · a + - (1 · a)) + - a = (- 1) · a
+  =⟨ “Identity of ·” ⟩
+    (a + - (1 · a)) + - a = (- 1) · a
+  =⟨ “Symmetry of +” ⟩
+    ( - (1 · a) + a) + - a = (- 1) · a
+  =⟨ “Associativity of +” ⟩
+    - (1 · a) + (a + - a) = (- 1) · a
+  =⟨ “Unary minus” ⟩
+    - (1 · a) + 0 = (- 1) · a
+  =⟨ “Identity of +” ⟩
+    - (1 · a) + 0 = (- 1) · a + 0
+  =⟨ “Unary minus” ⟩
+    - (1 · a) + ((- (1 · a)) + (- (- (1 · a))) = (- 1) · a + 0
+    
+    Theorem (15.20): - a = (- 1) · a
+Proof:
+    - a
+  =⟨ “Identity of +” with `a ≔ - a` ⟩
+    0 + (- a)
+  =⟨ “Zero of ·” with `a ≔ a` ⟩
+    0 · a + (- a)
+  =⟨ “Unary minus” with `a ≔ 1` ⟩
+    (1 + (- 1)) · a + (- a)
+  =⟨ “Symmetry of ·” with `a, b ≔ (1 + (- 1)), a` ⟩
+    a · (1 + (- 1)) + (- a)
+  =⟨ “Distributivity of · over +” with `a, b, c ≔ a, 1, - 1` ⟩
+    1 · a + (- 1) · a + (- a)
+  =⟨ “Identity of ·” with `a ≔ a` ⟩
+    (- 1) · a + a + (- a)
+  =⟨ “Unary minus” with `a ≔ a` ⟩
+    (- 1) · a + 0
+  =⟨ “Identity of +” with `a ≔ (- 1) · a` ⟩
+    (- 1) · a 
+    
+    Theorem (15.19) “Distributivity of unary minus over +”:
+    - (a + b) = (- a) + (- b)
+Proof:
+    - (a + b)
+  =⟨ (15.20) with `a ≔ (a + b)` ⟩
+    (- 1) · (a + b)
+  =⟨ “Distributivity of · over +” with `a, b, c ≔ (- 1), a, b ` ⟩
+    (- 1) · a + (- 1) · b
+  =⟨ (15.20) with `a ≔ a` ⟩
+    - a + (- 1) · b
+  =⟨ (15.20) with `a ≔ b` ⟩
+    - a + - b
+
