@@ -1,0 +1,473 @@
+Theorem “Right-identity of +”: m + 0 = m
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + 0
+      =⟨ “Definition of + for 0” ⟩
+        0
+    Induction step:
+        suc m + 0
+      =⟨ “Definition of + for `suc`” ⟩
+        suc (m + 0)
+      =⟨ Induction hypothesis ⟩
+        suc m
+        
+Theorem “Successor”: suc n = n + 1
+Proof:
+  By induction on `n : ℕ`:
+    Base case:
+        0 + 1
+      =⟨ “Left-identity of +” ⟩
+        1
+      =⟨ Fact `suc 0 = 1` ⟩
+        suc 0
+    Induction step:
+        suc n + 1
+      =⟨ “Definition of + for `suc`” ⟩
+        suc (n + 1)
+      =⟨ Induction hypothesis ⟩
+        suc suc n
+
+Theorem “Adding the successor”: m + (suc n) = suc (m + n)
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + (suc n)
+      =⟨ “Left-identity of +” ⟩
+        suc n
+      =⟨ “Left-identity of +” ⟩
+        suc (0 + n)
+    Induction step:
+        (suc m) + (suc n)
+      =⟨ “Definition of + for `suc`” ⟩
+        suc (m + (suc n))
+      =⟨ Induction hypothesis ⟩
+        suc (suc (m + n))
+      =⟨ “Definition of + for `suc`” ⟩
+        suc ((suc m) + n)
+
+Theorem “Symmetry of +”: m + n = n + m
+Proof:
+  By induction on `m : ℕ`:
+      Base case:
+          0 + n
+        =⟨ “Left-identity of +” ⟩
+          n
+        =⟨ “Right-identity of +” ⟩
+          n + 0
+      Induction step:
+          (suc m) + n
+        =⟨ “Definition of + for `suc`” ⟩
+          suc (m + n)
+        =⟨ Induction hypothesis ⟩
+          suc (n + m)
+        =⟨ “Adding the successor” ⟩
+          n + (suc m)
+
+
+Theorem “Odd successor”: odd (suc n) ≡ even n
+Proof:
+    odd (suc n) ≡ even n
+  =⟨ “Odd is not even” ⟩
+    ¬ (even (suc n)) ≡ even n
+  =⟨ “Even successor” ⟩
+    ¬ (odd n) ≡ even n
+  =⟨ “Odd is not even” ⟩
+    ¬ ¬ even n ≡ even n
+  =⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ ¬ (even n ≡ even n)
+  =⟨ “Reflexivity of ≡” ⟩
+    ¬ ¬ (true)
+  =⟨ “Definition of `false`” ⟩
+    ¬ (false)
+  =⟨ “Negation of `false`” ⟩
+    true
+
+
+Theorem “Even double”: even (n + n)
+Proof:
+  By induction on `n : ℕ`:
+      Base case:
+          even (0 + 0)
+        =⟨ “Definition of + for 0” ⟩
+          even 0
+        =⟨ “Zero is even” ⟩
+          true
+      Induction step:
+          even (suc (n) + suc (n))
+        =⟨ “Definition of + for `suc`” ⟩
+          even (suc (n + suc (n)))
+        =⟨ “Adding the successor” ⟩
+          even (suc (suc (n + n)))
+        =⟨ “Even successor” ⟩
+          odd (suc (n + n))
+        =⟨ “Odd successor” ⟩
+          even (n + n)
+        =⟨ Induction hypothesis ⟩
+          true
+Theorem “Zero is not successor”: 0 ≠ suc n
+Proof:
+    0 ≠ suc n
+  ≡⟨ “Definition of ≠” ⟩
+    ¬ (0 = suc n)
+  ≡⟨ “Zero is not successor” ⟩
+    ¬ (false)
+  ≡⟨ “Negation of `false`” ⟩
+    true
+
+Theorem “Zero is not one”: 0 ≠ 1
+Proof:
+    0 ≠ 1
+  ≡⟨ Fact `1 = suc 0` ⟩
+    0 ≠ suc 0
+  =⟨ “Definition of ≠” ⟩
+    ¬ (0 = suc 0)
+  =⟨ “Zero is not successor” ⟩
+    ¬ false
+  =⟨ “Negation of `false`” ⟩
+    true
+
+Theorem “Zero is not one”: 0 = 1  ≡  false
+Proof:
+    0 = 1
+  ≡⟨ Fact `1 = suc 0` ⟩
+    0 = suc 0
+  ≡⟨ “Zero is not successor” ⟩
+    false
+    
+Theorem “Zero sum”:
+    0 = a + b  ≡  0 = a  ∧  0 = b
+Proof:
+  By induction on `a : ℕ`:
+    Base case:
+        0 = 0 + b ≡  0 = 0  ∧  0 = b
+      ≡⟨ “Left-identity of +” ⟩
+        0 = b ≡  0 = 0  ∧  0 = b
+      ≡⟨ “Identity of ∧” ⟩
+        true ∧ 0 = b ≡  0 = 0  ∧  0 = b
+      ≡⟨ “Reflexivity of =” ⟩
+        true ∧ 0 = b ≡  true  ∧  0 = b
+      ≡⟨ “Reflexivity of ≡” ⟩
+        true
+    Induction step:
+        0 = suc a + b ≡  0 = suc a  ∧  0 = b
+      ≡⟨ “Zero is not successor” ⟩
+        0 = suc a + b ≡ false ∧ 0 = b
+      ≡⟨ “Definition of + for `suc`” ⟩
+        0 = suc (a + b) ≡ false ∧ 0 = b
+      ≡⟨ “Zero is not successor” ⟩
+        false ≡ false ∧ 0 = b
+      ≡⟨ “Zero of ∧” ⟩
+        false ≡ false 
+      ≡⟨ “Reflexivity of ≡” ⟩
+        true 
+        
+Theorem “Zero is unique least element”:
+    a ≤ 0  ≡  a = 0
+Proof:
+  By induction on `a : ℕ`:
+    Base case:
+        0 ≤ 0 
+      ≡⟨ “Zero is least element” ⟩
+        true
+      ≡⟨ “Reflexivity of =” ⟩
+        0 = 0
+    Induction step:
+        suc a ≤ 0
+      ≡⟨ “Successor is not at most zero” ⟩
+        false
+      ≡⟨ “Definition of `false`” ⟩
+        ¬ true
+      ≡⟨ “Zero is not successor” ⟩
+        ¬ (suc a ≠ 0)   
+      ≡⟨ “Definition of ≠” ⟩
+        ¬ ¬ (suc a = 0)   
+      ≡⟨ “Double negation” ⟩
+        suc a = 0   
+     
+Theorem “Reflexivity of ≤”: a ≤ a
+Proof:
+  By induction on `a : ℕ`:
+     Base case:
+         0 ≤ 0 
+       ≡⟨ “Zero is least element” ⟩
+         true
+     Induction step:
+         suc a ≤ suc a
+       ≡⟨ “Isotonicity of successor” ⟩
+         a ≤ a
+       ≡⟨ Induction hypothesis ⟩
+         true
+         
+Theorem “Antisymmetry of ≤”:
+    a ≤ b ⇒ b ≤ a ⇒ a = b
+Proof:
+  By induction on `a : ℕ`:
+    Base case `0 ≤ b ⇒ b ≤ 0 ⇒ 0 = b`:
+        0 ≤ b ⇒ b ≤ 0 ⇒ 0 = b
+      ≡⟨ “Zero is unique least element” ⟩
+        0 ≤ b ⇒ b = 0 ⇒ 0 = b
+      ≡⟨ “Symmetry of =”  ⟩
+        0 ≤ b ⇒ b = 0 ⇒ b = 0
+      ≡⟨ “Reflexivity of ⇒”  ⟩
+        0 ≤ b ⇒ true
+      ≡⟨ “Right-zero of ⇒” ⟩
+        true
+    Induction step `suc a ≤ b ⇒ b ≤ suc a ⇒ suc a = b`:
+      By induction on `b : ℕ`:
+        Base case `suc a ≤ 0 ⇒ 0 ≤ suc a ⇒ suc a = 0`:
+            suc a ≤ 0 ⇒ 0 ≤ suc a ⇒ suc a = 0
+          ≡⟨ “Zero is unique least element” ⟩
+            suc a = 0 ⇒ 0 ≤ suc a ⇒ suc a = 0
+          ≡⟨ “Zero is not successor” ⟩
+            false ⇒ 0 ≤ suc a ⇒ false
+          ≡⟨ “Definition of ¬” ⟩
+            false ⇒ ¬ (0 ≤ suc a)
+          ≡⟨ “ex falso quodlibet” ⟩
+            true
+        Induction step `suc a ≤ suc b ⇒ suc b ≤ suc a ⇒ suc a = suc b`:
+            suc a ≤ suc b ⇒ suc b ≤ suc a ⇒ suc a = suc b
+          ≡⟨ “Isotonicity of successor” ⟩
+            a ≤ b ⇒ b ≤ a ⇒ suc a = suc b
+          ≡⟨ “Cancellation of `suc`” ⟩
+            a ≤ b ⇒ b ≤ a ⇒ a = b
+          ≡⟨ Induction hypothesis `a ≤ b ⇒ b ≤ a ⇒ a = b` ⟩
+            true
+
+
+Theorem “Transitivity of ≤”:
+    a ≤ b ⇒ b ≤ c ⇒ a ≤ c
+Proof:
+  By induction on `a : ℕ`:
+     Base case:
+         0 ≤ b ⇒ b ≤ c ⇒ 0 ≤ c
+       ≡⟨ “Zero is least element” ⟩
+         true ⇒ b ≤ c ⇒ true
+       ≡⟨ “Self-distributivity of ⇒” ⟩
+         (true ⇒ b ≤ c) ⇒ (true ⇒ true)
+       ≡⟨ “Right-zero of ⇒” ⟩
+         true ⇒ true
+       ≡⟨ “Right-zero of ⇒” ⟩
+         true
+    Induction step `suc a ≤ b ⇒ b ≤ c ⇒ suc a ≤ c`:
+      By induction on `b : ℕ`:
+        Base case `suc a ≤ 0 ⇒ 0 ≤ c ⇒ suc a ≤ c`:
+            suc a ≤ 0 ⇒ 0 ≤ c ⇒ suc a ≤ c
+          ≡⟨ “Successor is not at most zero” ⟩
+            false ⇒ 0 ≤ c ⇒ suc a ≤ c
+          ≡⟨ “Zero is least element” ⟩
+            false ⇒ true ⇒ suc a ≤ c
+          ≡⟨ “Self-distributivity of ⇒” ⟩
+            (false ⇒ true) ⇒ (false ⇒ suc a ≤ c)
+          ≡⟨ “ex falso quodlibet” ⟩
+            (false ⇒ true) ⇒ true
+          ≡⟨ “ex falso quodlibet” ⟩
+            true ⇒ true
+          ≡⟨ “Reflexivity of ⇒” ⟩
+            true
+        Induction step `suc a ≤ suc b ⇒ suc b ≤ c ⇒ suc a ≤ c`:
+          By induction on `c : ℕ`:
+            Base case `suc a ≤ suc b ⇒ suc b ≤ 0 ⇒ suc a ≤ 0`:
+                suc a ≤ suc b ⇒ suc b ≤ 0 ⇒ suc a ≤ 0
+              ≡⟨ “Successor is not at most zero” ⟩
+                suc a ≤ suc b ⇒ false ⇒ false
+              ≡⟨ “Self-distributivity of ⇒” ⟩
+                (suc a ≤ suc b ⇒ false) ⇒ (suc a ≤ suc b ⇒ false)
+              ≡⟨ “Definition of ¬” ⟩
+                ¬ (suc a ≤ suc b) ⇒ ¬ (suc a ≤ suc b)
+              ≡⟨ “Reflexivity of ⇒” ⟩
+                true
+
+              
+            Induction step `suc a ≤ suc b ⇒ suc b ≤ suc c ⇒ suc a ≤ suc c`:
+                suc a ≤ suc b ⇒ suc b ≤ suc c ⇒ suc a ≤ suc c
+              ≡⟨ “Isotonicity of successor” ⟩
+                a ≤ b ⇒ b ≤ c ⇒ a ≤ c
+              ≡⟨ Induction hypothesis `a ≤ b ⇒ b ≤ c ⇒ a ≤ c` ⟩
+                true 
+Theorem “Right-identity of subtraction”: m - 0 = m
+Proof: 
+  By induction on `m : ℕ`:
+    Base case:
+           0 - 0
+         =⟨ “Subtraction from zero” ⟩
+           0
+    Induction step `suc m - 0 = suc m`:
+        suc m - 0
+      =⟨ “Subtraction of zero from successor” ⟩
+        suc m
+        
+        Theorem “Self-cancellation of subtraction”: m - m = 0
+Proof: 
+  By induction on `m : ℕ`:
+    Base case:
+        0 - 0
+      =⟨ “Subtraction from zero” ⟩
+        0
+    Induction step `suc m - suc m = 0`:
+        suc m - suc m
+      =⟨ “Subtraction of successor from successor” ⟩
+        m - m
+      =⟨ Induction hypothesis ⟩
+        0
+
+Theorem “Subtraction after addition”: (m + n) - n = m
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        (0 + n) - n
+      =⟨ “Left-identity of +” ⟩
+        n - n
+      =⟨ “Self-cancellation of subtraction” ⟩
+        0
+    Induction step `(suc m + n) - n = suc m`:
+      By induction on `n : ℕ`:
+        Base case:
+            (suc m + 0) - 0
+          =⟨ “Right-identity of +” ⟩
+            suc m - 0
+          =⟨ “Subtraction of zero from successor” ⟩
+            suc m
+        Induction step `(suc m + suc n) - suc n = suc m`:
+            (suc m + suc n) - suc n
+          =⟨ “Definition of + for `suc`” ⟩
+            suc (m + suc n) - suc n
+          =⟨ “Adding the successor” ⟩
+            suc (suc (m + n)) - suc n
+          =⟨ “Subtraction of successor from successor” ⟩
+            suc (m + n) - n
+          =⟨ “Definition of + for `suc`” ⟩
+            (suc (m) + n) - n
+          =⟨ Induction hypothesis `(suc m + n) - n = suc m` ⟩
+            suc m
+
+Theorem “Subtraction from multiplication with successor”: m · (suc n) - m = m · n
+Proof:
+    m · suc n - m
+  =⟨ “Symmetry of ·” ⟩
+    suc n · m - m
+  =⟨ “Definition of · for `suc`” ⟩
+    m + n · m - m
+  =⟨ “Symmetry of +” ⟩
+    (n · m + m) - m
+  =⟨ “Subtraction after addition” ⟩
+     n · m
+  =⟨ “Symmetry of ·” ⟩
+     m · n
+
+Theorem “Subtraction of sum”: k - (m + n) = (k - m) - n
+Proof:
+  By induction on `k : ℕ`:
+        Base case:
+            0 - (m + n) = (0 - m) - n
+          =⟨ “Subtraction from zero” ⟩
+            0 = 0 - n
+          =⟨ “Subtraction from zero” ⟩
+            0 = 0
+          =⟨ “Reflexivity of =” ⟩
+            true
+        Induction step `suc k - (m + n) = (suc k - m) - n`:
+          By induction on `m : ℕ`:
+            Base case:
+                suc k - (0 + n) = (suc k - 0) - n
+              =⟨ “Right-identity of subtraction” ⟩
+                suc k - (0 + n) = suc k - n
+              =⟨ “Left-identity of +” ⟩
+                suc k - n = suc k - n
+              =⟨ “Reflexivity of =” ⟩
+                true
+            Induction step `suc k - (suc m + n) = (suc k - suc m) - n`:
+                suc k - (suc m + n) = (suc k - suc m) - n
+              =⟨ “Subtraction of successor from successor” ⟩
+                suc k - (suc m + n) = (k - m) - n
+              =⟨ “Definition of + for `suc`” ⟩
+                suc k - suc (m + n) = (k - m) - n
+              =⟨ “Subtraction of successor from successor” ⟩
+                k - (m + n) = (k - m) - n
+              =⟨ Induction hypothesis `k - (m + n) = (k - m) - n` ⟩
+                true
+
+             
+Theorem “Distributivity of · over subtraction”: k · (m - n) = k · m - k · n
+Proof: 
+  By induction on `m : ℕ`:
+    Base case:
+        k · (0 - n) = k · 0 - k · n
+      =⟨ “Right-zero of ·” ⟩
+        k · (0 - n) = 0 - k · n
+      =⟨ “Subtraction from zero” ⟩
+        k · 0 = 0
+      =⟨ “Right-zero of ·” ⟩
+        0 = 0
+      =⟨ “Reflexivity of =” ⟩
+        true
+    Induction step `k · (suc m - n) = k · suc m - k · n`:
+      By induction on `n : ℕ`:
+        Base case:
+            k · (suc m - 0) = k · suc m - k · 0
+          =⟨ “Right-identity of subtraction” ⟩
+            k · suc m = k · suc m - k · 0
+          =⟨ “Right-zero of ·” ⟩
+            k · suc m = k · suc m - 0
+          =⟨ “Right-identity of subtraction” ⟩
+            k · suc m = k · suc m
+          =⟨ “Reflexivity of =” ⟩
+            true
+        Induction step `k · (suc m - suc n) = k · suc m - k · suc n`:
+            k · (suc m - suc n) = k · suc m - k · suc n
+          =⟨ “Subtraction of successor from successor” ⟩
+            k · (m - n) = k · suc m - k · suc n
+          =⟨ “Symmetry of ·” ⟩
+            k · (m - n) = suc m · k - suc n · k
+          =⟨ “Definition of · for `suc`” ⟩
+            k · (m - n) = (k + m · k) - (k + n · k)
+          =⟨ “Symmetry of +” ⟩
+            k · (m - n) = (m · k + k) - (k + n · k)
+          =⟨ “Subtraction of sum” ⟩
+            k · (m - n) = ((m · k + k) - k) - n · k
+          =⟨ “Subtraction after addition” ⟩
+            k · (m - n) = m · k - n · k
+          =⟨ “Symmetry of ·” ⟩
+            k · (m - n) = k · m - k · n
+          =⟨ Induction hypothesis `k · (m - n) = k · m - k · n` ⟩
+            true
+
+         
+Theorem “Monus exchange”: m + (n - m) = n + (m - n)
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + (n - 0) = n + (0 - n)
+      =⟨ “Right-identity of subtraction” ⟩
+        0 + n = n + (0 - n)
+      =⟨ “Subtraction from zero” ⟩
+        0 + n = n + 0
+      =⟨ “Right-identity of +” ⟩
+        0 + n = n
+      =⟨ “Left-identity of +” ⟩
+        n = n
+      =⟨ “Reflexivity of =” ⟩
+        true
+    Induction step `suc m + (n - suc m) = n + (suc m - n)`:
+      By induction on `n : ℕ`:
+        Base case:
+            suc m + (0 - suc m) = 0 + (suc m - 0)
+          =⟨ “Subtraction from zero” ⟩
+            suc m + 0 = 0 + (suc m - 0)
+          =⟨ “Right-identity of subtraction” ⟩
+            suc m + 0 = 0 + suc m
+          =⟨ “Symmetry of +” ⟩
+            suc m + 0 = suc m + 0
+          =⟨ “Reflexivity of =” ⟩
+            true
+        Induction step `suc m + (suc n - suc m) = suc n + (suc m - suc n)`:
+            suc m + (suc n - suc m) = suc n + (suc m - suc n)
+          =⟨ “Subtraction of successor from successor” ⟩
+            suc m + (n - m) = suc n + (m - n)
+          =⟨ “Definition of + for `suc`” ⟩
+            suc (m + (n - m)) = suc (n + (m - n))
+          =⟨ Induction hypothesis `m + (n - m) = n + (m - n)` ⟩
+            suc (n + (m - n)) = suc (n + (m - n))
+          =⟨ “Reflexivity of =” ⟩
+            true
+        
