@@ -1,0 +1,194 @@
+Theorem (4.2) “Left-monotonicity of ∨” “Monotonicity of ∨”:
+    (p ⇒ q) ⇒ (p ∨ r) ⇒ (q ∨ r)
+Proof:
+    (p ⇒ q) ⇒ (p ∨ r) ⇒ (q ∨ r)
+  ≡⟨ “Definition of Implication” ⟩
+    (p ⇒ q) ⇒ ((p ∨ r) ∨ (q ∨ r) ≡ q ∨ r)
+  ≡⟨ “Idempotency of ∨” ⟩
+    (p ⇒ q) ⇒ (p ∨ q ∨ r ≡ q ∨ r)
+  ≡⟨ “Distributivity of ∨ over ≡” ⟩
+    (p ⇒ q) ⇒ ((p ∨ q ≡ q) ∨ r)
+  ≡⟨ “Definition of Implication” ⟩
+    (p ⇒ q) ⇒ ((p ⇒ q) ∨ r)
+  ≡⟨ “Strengthening” ⟩
+    true
+
+Theorem “Distributivity of ∨ over ⇒”:
+    p ∨ (q ⇒ r) ≡ p ∨ q ⇒ p ∨ r
+Proof:
+    p ∨ (q ⇒ r) ≡ p ∨ q ⇒ p ∨ r
+  ≡⟨ “Definition of Implication” ⟩ 
+    p ∨ (q ⇒ r) ≡ p ∨ q ∨ p ∨ r ≡ p ∨ r
+  ≡⟨ “Idempotency of ∨” ⟩ 
+    p ∨ (q ⇒ r) ≡ p ∨ q ∨ r ≡ p ∨ r
+  ≡⟨ “Distributivity of ∨ over ≡” ⟩ 
+    p ∨ (q ⇒ r) ≡ p ∨ (q ∨ r ≡ r)
+  ≡⟨ “Definition of Implication” ⟩ 
+    p ∨ (q ⇒ r) ≡ p ∨ (q ⇒ r)
+  ≡⟨ “Reflexivity of ≡” ⟩ 
+    true
+
+Theorem “Left-monotonicity of ∨” “Monotonicity of ∨”:
+    (p ⇒ q) ⇒ (p ∨ r) ⇒ (q ∨ r)
+Proof:
+    (p ∨ r) ⇒ (q ∨ r)
+  ≡⟨ “Distributivity of ∨ over ⇒” ⟩
+    (p ⇒ q) ∨ r
+  ⇐⟨ “Weakening” ⟩
+    p ⇒ q
+
+Theorem “Antitonicity of ¬”: (p ⇒ q) ⇒ (¬ q ⇒ ¬ p)
+Proof:
+    (p ⇒ q) ⇒ (¬ q ⇒ ¬ p)
+  ≡⟨ “Definition of Implication” ⟩
+    ¬ (¬ p ∨ q) ∨  (¬ ¬ q ∨ ¬ p)
+  ≡⟨ “Double negation” ⟩
+    ¬ (¬ p ∨ q) ∨ (q ∨ ¬ p)
+  ≡⟨ “Distributivity of ∨ over ∨” ⟩
+    (¬ (¬ p ∨ q) ∨ q) ∨ (¬ (¬ p ∨ q) ∨ ¬ p)
+  ≡⟨ “Idempotency of ∨” ⟩
+    (¬ (¬ p ∨ q) ∨ q ∨ ¬ p)
+  ≡⟨ “Reflexivity of ≡”  ⟩
+    ¬ (¬ p ∨ q) ∨ (¬ p ∨ q)
+  ≡⟨ “Excluded middle”  ⟩
+    true
+
+Theorem “Left-monotonicity of ∨” “Monotonicity of ∨”:
+    (p ⇒ q) ⇒ (p ∨ r) ⇒ (q ∨ r)
+Proof:
+  Assuming `p ⇒ q`:
+      p ∨ r
+    ≡⟨ Assumption `p ⇒ q` with “Definition of Implication” ⟩
+      (p ∧ q) ∨ r
+    ≡⟨ “Distributivity of ∨ over ∧” ⟩
+      (p ∨ r) ∧ (q ∨ r)
+    ⇒⟨ “Weakening” ⟩
+      (q ∨ r)
+
+Theorem (4.2) “Left-monotonicity of ∨” “Monotonicity of ∨”:
+    (p ⇒ q) ⇒ (p ∨ r) ⇒ (q ∨ r)
+Proof:
+  Assuming `p ⇒ q`, `p ∨ r`:
+    By cases: `p`, `r`
+      Completeness: By Assumption `p ∨ r`
+      Case `p`:
+          true
+        ≡⟨ Assumption `p ∨ r` ⟩
+          p ∨ r
+        ≡⟨ Assumption `p ⇒ q` with “Definition of Implication” ⟩
+          (p ∧ q) ∨ r
+        ≡⟨ “Distributivity of ∨ over ∧” ⟩
+          (p ∨ r) ∧ (q ∨ r)
+        ⇒⟨ “Weakening” ⟩
+          q ∨ r
+      Case `r`:
+          true
+        ≡⟨ Assumption `r` ⟩
+          r
+        ≡⟨ “Left-identity of ⇒” ⟩
+          true ⇒ r 
+        ≡⟨ Assumption `p ⇒ q` ⟩
+          (p ⇒ q) ⇒ r 
+        ≡⟨ “Definition of Implication” ⟩
+          (p ⇒ q) ∨ r ≡ r
+        ≡⟨ Assumption `r` ⟩
+          (p ⇒ q) ∨ r ≡ true
+        ≡⟨ “Reflexivity of ≡” ⟩
+          (p ⇒ q) ∨ r
+        ≡⟨ “Distributivity of ∨ over ⇒” ⟩
+          p ∨ r ⇒ q ∨ r
+        ≡⟨ Assumption `p ∨ r` ⟩
+          true ⇒ q ∨ r
+        ≡⟨ “Left-identity of ⇒” ⟩
+          q ∨ r
+
+
+Theorem (4.2) “Left-monotonicity of ∨” “Monotonicity of ∨”:
+    (p ⇒ q) ⇒ (p ∨ r) ⇒ (q ∨ r)
+Proof:
+  Assuming `p ⇒ q`, `p ∨ r`:
+    By cases: `p`, `r`
+      Completeness: By Assumption `p ∨ r`
+      Case `p`:
+          true
+        ≡⟨ Assumption `p` ⟩
+          p
+        ⇒⟨ “Weakening” ⟩
+          p ∨ q ∨ r
+        ≡⟨ Assumption `p ⇒ q` with “Definition of Implication” ⟩
+          q ∨ r
+      Case `r`:
+          true
+        ≡⟨ Assumption `r`⟩
+          r
+        ⇒⟨ “Strengthening” ⟩
+           q ∨ (p ∨ r)
+        ≡⟨ “Identity of ≡” ⟩
+          q ∨ (p ∨ r ≡ true)
+        ≡⟨ “Right-zero of ⇒” ⟩
+          q ∨ (p ∨ r ≡ p ⇒ true)
+        ≡⟨ Assumption `r` ⟩
+          q ∨ (p ∨ r ≡ p ⇒ r)
+        ≡⟨ Assumption `p ∨ r` with “Definition of Implication” ⟩
+          q ∨ r
+
+    (p ⇒ q) ⇒ (r ⇒ s) ⇒ (p ∨ r) ⇒ (q ∨ s)
+Proof:
+  Assuming `p ⇒ q`, `r ⇒ s`:
+      p ∨ r
+    ≡⟨ Assumption `p ⇒ q` with “Definition of Implication” ⟩
+      (p ∧ q) ∨ r
+    ⇒⟨ “Strengthening” ⟩
+      q ∨ r
+    ≡⟨ Assumption `r ⇒ s` with “Definition of Implication” ⟩
+      q ∨ (r ∧ s)
+    ⇒⟨ “Strengthening” ⟩
+
+      q ∨ s
+
+Theorem (4.3) “Left-monotonicity of ∧” “Monotonicity of ∧”:
+    (p ⇒ q) ⇒ ((p ∧ r) ⇒ (q ∧ r))
+Proof:
+  Assuming `p ⇒ q`:
+      p ∧ r
+    ≡⟨ Assumption `p ⇒ q` with “Definition of Implication” ⟩
+      p ∧ q ∧ r
+    ⇒⟨ “Strengthening” ⟩
+      q ∧ r
+
+Theorem (4.3) “Left-monotonicity of ∧” “Monotonicity of ∧”:
+    (p ⇒ q) ⇒ ((p ∧ r) ⇒ (q ∧ r))
+Proof:
+  Assuming `p ⇒ q` and using with “Definition of ⇒” (3.60):
+      p ∧ r
+    ≡⟨ Assumption `p ⇒ q` ⟩
+      p ∧ q ∧ r
+    ⇒⟨ “Strengthening” ⟩
+
+      q ∧ r
+
+Theorem “Monotonicity of ∧”:
+    (p ⇒ p') ⇒ (q ⇒ q') ⇒ ((p ∧ q) ⇒ (p' ∧ q'))
+Proof:
+  Assuming `p ⇒ p'`, `q ⇒ q'`:
+      p ∧ q
+    ≡⟨ Assumption `p ⇒ p'` with “Definition of Implication” ⟩
+      p ∧ p' ∧ q
+    ≡⟨ Assumption `q ⇒ q'` with “Definition of Implication” ⟩
+      p ∧ p' ∧ q ∧ q'
+    ⇒⟨ “Strengthening” ⟩
+
+      p' ∧ q'
+
+Theorem “Proof by contradiction”:  ¬ p ⇒ false  ≡  p
+Proof:
+    ¬ p ⇒ false  ≡  p
+  ≡⟨ “Definition of Implication” ⟩
+    ¬ ¬ p ∨ false ≡ p
+  ≡⟨ “Double negation” ⟩
+    p ∨ false ≡ p
+  ≡⟨ “Identity of ∨” ⟩
+    p ≡ p
+  ≡⟨ “Reflexivity of ≡” ⟩
+    true
+    
