@@ -1,0 +1,173 @@
+Calculation:
+    (3 + x) · (5 - x)
+  =⟨ “Distributivity of · over -” ⟩
+    (3 + x) · 5 - (3 + x) · x
+  =⟨ “Distributivity of · over +” ⟩
+    (3 · 5 + x · 5) - (3 · x + x · x )
+  =⟨ “Subtraction” ⟩
+    (3 · 5 + x · 5) + - (3 · x + x · x )
+  =⟨ “Distributivity of unary minus over +” ⟩
+    (3 · 5 + x · 5) + ((- (3 · x)) + (- (x · x)))
+  =⟨ “Associativity of +” ⟩
+    (3 · 5 + (x · 5 + (- (3 · x)))) + (- (x · x))
+  =⟨ “Subtraction” ⟩
+    (3 · 5 + (x · 5 - 3 · x)) - x · x
+  =⟨ “Symmetry of ·” ⟩
+    (3 · 5 + (5 · x - 3 · x)) - x · x
+  =⟨ “Distributivity of · over -” ⟩
+    (3 · 5 + (5 - 3) · x) - x · x
+  =⟨ Fact `3 · 5 = 15` ⟩
+    (15 + (5 - 3) · x) - x · x
+  =⟨ Fact `5 - 3 = 2` ⟩
+    (15 + 2 · x) - x · x
+
+Calculation:
+    (3 · x - 2) · (5 · y + z)[x, y, z ≔ 2, 3, x]
+  =⟨ Substitution ⟩
+    (3 · x - 2) · (5 · 3 + x)
+  =⟨ Fact `5 · 3 = 15` ⟩
+    ((3 · x) - 2) · (15 + x)
+  =⟨ “Distributivity of · over -” ⟩
+    ((3 · x)· (15 + x)) - (2 · (15 + x)) 
+  =⟨ “Distributivity of · over +” ⟩
+    ((3 · x) · 15 + (3 · x) · x) - (2 · 15 + 2 · x)
+  =⟨ “Associativity of ·” ⟩
+    (3 · (x · 15) + 3 · (x · x)) - (2 · 15 + 2 · x)
+  =⟨ “Symmetry of ·” ⟩
+    (3 · (15 · x) + 3 · (x · x)) - (2 · 15 + 2 · x)
+  =⟨ “Associativity of ·” ⟩
+    ((3 · 15) · x + 3 · (x · x)) - (2 · 15 + 2 · x)
+  =⟨ Fact `3 · 15 = 45` ⟩
+    (45 · x + 3 · (x · x)) - (2 · 15 + 2 · x)
+  =⟨ Fact `2 · 15 = 30` ⟩
+    (45 · x + 3 · (x · x)) - (30 + 2 · x)
+  =⟨ “Symmetry of +” ⟩
+    (3 · (x · x) + 45 · x) - (2 · x + 30)
+  =⟨ “Mutual associativity of + and -” ⟩
+    3 · (x · x) + (45 · x - (2 · x + 30))
+  =⟨ “Subtraction of addition” ⟩
+    3 · (x · x) + ((45 · x - 2 · x) - 30)
+  =⟨ “Distributivity of · over -” ⟩
+    3 · (x · x) + ((45 - 2)· x - 30)
+  =⟨ Fact `45 - 2 = 43` ⟩
+    3 · (x · x) + (43 · x - 30)
+
+Calculation:
+    ((5 · x + 3) - 5 · x)[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ “Symmetry of +” ⟩
+    ((3 + 5 · x) - 5 · x)[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ “Mutual associativity of + and -” ⟩
+    (3 + (5 · x - 5 · x))[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ “Distributivity of · over -” ⟩
+    (3 + (5 - 5) · x)[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ Fact `5 - 5 = 0` ⟩
+    (3 + 0 · x)[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ “Symmetry of ·” ⟩
+    (3 + x · 0)[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ “Zero of ·” ⟩
+    (3 + 0)[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ “Identity of +” ⟩
+    (3)[x ≔ 56 · y + 27 · (z + 19)]
+  =⟨ Substitution ⟩
+    3    
+
+Theorem “Contradiction”: ¬ p ∧ p ≡ false
+Proof:
+    ¬ p ∧ p
+  =⟨ “Double negation” ⟩
+    ¬ p ∧ ¬ ¬ p
+  =⟨ “De Morgan” ⟩
+    ¬ (p ∨ ¬ p)
+  =⟨ “Excluded middle” ⟩
+    ¬ (true)
+  =⟨ “Definition of `false`” ⟩
+    false
+    
+ Theorem “Excluded middle”: ¬ p ∨ p ≡ true
+Proof:
+    ¬ p ∨ p
+  =⟨ “Double negation” ⟩
+    ¬ p ∨ ¬ ¬ p
+  =⟨ “De Morgan” ⟩
+    ¬ (p ∧ ¬ p)
+  =⟨ “Contradiction” ⟩
+    ¬ false
+  =⟨ “Negation of `false`” ⟩
+    true
+
+Theorem (3.44b) “Absorption”: p ∨ (¬ p ∧ q) ≡ p ∨ q
+Proof:
+    p ∨ (¬ p ∧ q)
+  =⟨ “Distributivity of ∨ over ∧” ⟩
+    (p ∨ ¬ p) ∧ (p ∨ q)
+  =⟨ “Excluded middle” ⟩ 
+    true ∧ (p ∨ q)
+  =⟨ “Identity of ∧” ⟩
+    p ∨ q
+
+
+Theorem (3.44c) “Absorption”: ¬ p ∧ (p ∨ q) ≡ ¬ p ∧ q
+Proof:
+    ¬ p ∧ (p ∨ q)
+  =⟨ “Distributivity of ∧ over ∨” ⟩
+    (¬ p ∧ p) ∨ (¬ p ∧ q)
+  =⟨ “Contradiction” ⟩
+    false ∨ (¬ p ∧ q)
+  =⟨ “Identity of ∨” ⟩
+    ¬ p ∧ q
+
+Theorem (3.43a) “Absorption”: p ∧ (p ∨ q) ≡ p
+Proof:
+    p ∧ (p ∨ q)
+  =⟨ “Distributivity of ∧ over ∨” ⟩
+    (p ∧ p) ∨ (p ∧ q)
+  =⟨ “Idempotency of ∧” ⟩
+    p ∨ (p ∧ q)
+  =⟨ “Identity of ∧” ⟩
+    (p ∧ true) ∨ (p ∧ q)
+  =⟨ “Distributivity of ∧ over ∨” ⟩
+    p ∧ (true ∨ q)
+  =⟨ “Zero of ∨” ⟩
+    p ∧ true 
+  =⟨ “Identity of ∧” ⟩
+    p
+    
+Lemma “Loop body invariant 1”:
+        (s = x · x ∧ d = 2 · x + 1)
+      ⇒⁅ s := s + d ⨾ d := d + 2 ⨾ x := x + 1 ⁆
+        (s = x · x ∧ d = 2 · x + 1)
+Proof:
+    (s = x · x ∧ d = 2 · x + 1)
+  ≡⟨ “Cancellation of +” ⟩
+    (s + d = (x · x) + d ∧ d = 2 · x + 1)
+  ≡⟨ Substitution ⟩
+    (s = (x · x) + d ∧ d = 2 · x + 1)[s ≔ s + d]
+  ⇒⁅ s := s + d ⁆   ⟨ “Assignment” ⟩
+    (s = (x · x) + d ∧ d = 2 · x + 1)
+  ≡⟨ “Replacement in equality with addition” ⟩
+    (s = (x · x) + 2 · x + 1 ∧ d = 2 · x + 1)
+  ≡⟨ “Cancellation of +” ⟩
+    (s = (x · x) + 2 · x + 1 ∧ d + 2 = 2 · x + 1 + 2)
+  ≡⟨ Substitution ⟩
+    (s = (x · x) + 2 · x + 1 ∧ d = 2 · x + 1 + 2)[d ≔ d + 2]
+  ⇒⁅ d := d + 2 ⁆   ⟨ “Assignment” ⟩
+    (s = (x · x) + 2 · x + 1 ∧ d = 2 · x + 1 + 2)
+  ≡⟨ “Symmetry of +” ⟩
+    (s = (x · x) + 2 · x + 1 ∧ d = 2 · x + 2 + 1)
+  ≡⟨ Fact `2 = 1 + 1` ⟩
+    (s = (x · x) + (1 + 1) · x + 1 ∧ d = 2 · x + 2 + 1)
+  ≡⟨ “Distributivity of · over +” ⟩
+    (s = (x · x) + 1 · x + 1 · x + 1 ∧ d = 2 · x + 2 + 1)
+  ≡⟨ “Symmetry of ·” ⟩
+    (s = (x · x) + x · 1 + 1 · x + 1 ∧ d = 2 · x + 2 + 1)
+  ≡⟨ “Identity of ·” ⟩
+    (s = (x · x) + x · 1 + 1 · x + 1 · 1 ∧ d = 2 · x + 2 · 1 + 1)
+  ≡⟨ “Distributivity of · over +” ⟩
+    (s = x · (x + 1) + 1 · (x + 1) ∧ d = 2 · x + 2 · 1 + 1)
+  ≡⟨ “Distributivity of · over +” ⟩
+    (s = (x + 1) · (x + 1) ∧ d = 2 · (x + 1) + 1)
+  ≡⟨ Substitution ⟩
+    (s = x · x ∧ d = 2 · x + 1)[x ≔ x + 1]
+  ⇒⁅ x := x + 1 ⁆   ⟨ “Assignment” ⟩
+    (s = x · x ∧ d = 2 · x + 1)
+    
