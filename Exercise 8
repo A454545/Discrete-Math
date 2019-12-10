@@ -1,0 +1,132 @@
+Theorem “Snoc is not empty”:  xs ▹ x = 𝜖  ≡  false
+Proof:
+    xs ▹ x = 𝜖 
+  ≡⟨ “Double negation” ⟩
+    ¬ ¬ ( xs ▹ x = 𝜖 )
+  ≡⟨ “Definition of ≠” ⟩
+    ¬ ( xs ▹ x ≠ 𝜖 )
+  ≡⟨ “Snoc is not empty” ⟩
+    ¬ ( true )
+  ≡⟨ “Definition of `false`” ⟩
+    false
+
+Fact (H12.2):  (2 ◃ 7 ◃ 5 ◃ 𝜖) ⌢ (1 ◃ 9 ◃ 𝜖) = 2 ◃ 7 ◃ 5 ◃ 1 ◃ 9 ◃ 𝜖
+Proof:
+    (2 ◃ 7 ◃ 5 ◃ 𝜖) ⌢ (1 ◃ 9 ◃ 𝜖)
+  =⟨ “Mutual associativity of ◃ with ⌢” ⟩
+    2 ◃ 7 ◃ 5 ◃ (𝜖 ⌢ (1 ◃ 9 ◃ 𝜖))
+  =⟨ “Left-identity of ⌢” ⟩
+    2 ◃ 7 ◃ 5 ◃ (1 ◃ 9 ◃ 𝜖)
+
+Theorem (13.19) “Right-identity of ⌢”:
+    xs ⌢ 𝜖 = xs
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        𝜖 ⌢ 𝜖 = 𝜖
+      =⟨ “Left-identity of ⌢” ⟩
+        𝜖 = 𝜖
+      ≡⟨ “Reflexivity of =” ⟩
+        true
+    Induction step:
+      For any `x : A`:
+          (x ◃ xs) ⌢ 𝜖
+        =⟨ “Definition of ⌢ for ◃” ⟩
+          x ◃ ( xs ⌢ 𝜖 )
+        =⟨ Induction hypothesis ⟩
+          x ◃ xs
+
+Theorem (13.20) “Associativity of ⌢”:
+    (xs ⌢ ys) ⌢ zs = xs ⌢ (ys ⌢ zs)
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        (𝜖 ⌢ ys) ⌢ zs = 𝜖 ⌢ (ys ⌢ zs)
+      =⟨ “Left-identity of ⌢” ⟩
+        (ys) ⌢ zs = (ys ⌢ zs)
+      =⟨ “Reflexivity of =” ⟩
+        true
+    Induction step:
+      For any `x`:
+          ((x ◃ xs) ⌢ ys) ⌢ zs = (x ◃ xs) ⌢ (ys ⌢ zs)
+        =⟨ “Mutual associativity of ◃ with ⌢” ⟩
+          x ◃ ( ( xs ⌢ ys) ⌢ zs ) = x ◃ (xs ⌢ ( ys ⌢ zs) )
+        =⟨ Induction hypothesis ⟩
+          x ◃ (xs ⌢ ( ys ⌢ zs) ) = x ◃ (xs ⌢ ( ys ⌢ zs) ) — This is “Reflexivity of =”
+
+Theorem (13.23) “Empty concatenation”:
+    xs ⌢ ys = 𝜖  ≡  xs = 𝜖 ∧ ys = 𝜖
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        𝜖 ⌢ ys = 𝜖 ≡ 𝜖 = 𝜖 ∧ ys = 𝜖
+      ≡⟨ “Left-identity of ⌢” ⟩
+        ys = 𝜖 ≡ 𝜖 = 𝜖 ∧ ys = 𝜖
+      ≡⟨ “Reflexivity of =” ⟩
+        ys = 𝜖 ≡ true ∧ ys = 𝜖
+      ≡⟨ “Identity of ∧” ⟩
+        ys = 𝜖 ≡ ys = 𝜖
+      ≡⟨ “Reflexivity of ≡” ⟩
+        true
+
+    Induction step:
+      For any `x : A`:
+          ( x ◃ xs ) ⌢ ys = 𝜖 ≡ ( x ◃ xs ) = 𝜖 ∧ ys = 𝜖
+        ≡⟨ “Mutual associativity of ◃ with ⌢” ⟩
+          x ◃ ( xs ⌢ ys ) = 𝜖 ≡ ( x ◃ xs ) = 𝜖 ∧ ys = 𝜖 
+        ≡⟨ “Cons is not empty” ⟩
+          false ≡ false ∧ (ys = 𝜖) 
+        ≡⟨ “Zero of ∧” ⟩
+          false ≡ false
+        ≡⟨ “Reflexivity of ≡” ⟩
+          true
+
+Theorem (15.47) “Indirect Equality” “Indirect Equality from below”:
+  a = b  ≡  (∀ z • z ≤ a  ≡  z ≤ b)
+Proof:
+  Using “Mutual implication”:
+    Subproof for `a = b  ⇒  (∀ z • z ≤ a  ≡  z ≤ b)`:
+      Assuming `a = b`:
+        For any `z`:
+            z ≤ a  ≡  z ≤ b
+          =⟨ Assumption `a = b` ⟩
+            z ≤ a  ≡  z ≤ a
+          =⟨ “Reflexivity of ≡” ⟩
+            true
+    Subproof for `(∀ z • z ≤ a  ≡  z ≤ b)  ⇒  a = b`:
+      Assuming `(∀ z • z ≤ a  ≡  z ≤ b)`:
+            a = b
+          ≡⟨ “Antisymmetry of ≤” ⟩
+            a ≤ b ∧ b ≤ a
+          ≡⟨ Assumption `(∀ z • z ≤ a  ≡  z ≤ b)` with “Instantiation” ⟩
+            a ≤ a ∧ b ≤ a
+          ≡⟨ “Reflexivity of ≤”, “Identity of ∧” ⟩
+            b ≤ a
+          ≡⟨ Assumption `(∀ z • z ≤ a  ≡  z ≤ b)` with “Instantiation” ⟩
+            b ≤ b — This is “Reflexivity of ≤”
+
+ Theorem “Indirect Equality” “Indirect Equality from above”:
+  a = b  ≡  (∀ z • a ≤ z  ≡  b ≤ z)
+Proof:
+  Using “Mutual implication”:
+    Subproof for `a = b  ⇒  (∀ z • a ≤ z  ≡  b ≤ z)`:
+      Assuming `a = b`:
+        For any `z`:
+            a ≤ z  ≡  b ≤ z
+          =⟨ Assumption `a = b` ⟩
+            a ≤ z  ≡  a ≤ z
+          =⟨ “Reflexivity of ≡” ⟩
+            true
+    Subproof for `(∀ z • a ≤ z  ≡  b ≤ z)  ⇒  a = b`:
+      Assuming `(∀ z • a ≤ z  ≡  b ≤ z)`:
+            a = b
+          ≡⟨ “Antisymmetry of ≤” ⟩
+            a ≤ b ∧ b ≤ a
+          ≡⟨ Assumption `(∀ z • a ≤ z  ≡  b ≤ z)` with “Instantiation” ⟩
+            b ≤ b ∧ b ≤ a
+          ≡⟨ “Reflexivity of ≤”, “Identity of ∧” ⟩
+            b ≤ a
+          ≡⟨ Assumption `(∀ z • a ≤ z  ≡  b ≤ z)` with “Instantiation” ⟩
+            a ≤ a — This is “Reflexivity of ≤”
+
+ 
