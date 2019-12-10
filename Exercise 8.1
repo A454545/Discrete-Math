@@ -1,0 +1,182 @@
+Theorem: ¬ (∃ x : ℤ • ∀ y : ℤ • x ≤ y)
+Proof:
+  Using “Generalised De Morgan”:
+    Subproof for `(∀ x : ℤ • ¬ (∀ y : ℤ • x ≤ y))`:
+      For any `x`:
+          ¬ (∀ y : ℤ • x ≤ y)
+        =⟨ “Generalised De Morgan”, “Double negation” ⟩ 
+          ∃ y : ℤ • ¬ (x ≤ y)
+        ⇐⟨ “∃-Introduction” ⟩ 
+          (¬ (x ≤ y))[y ≔ x + (- 2)] 
+        =⟨ Substitution, “Identity of +” ⟩
+          ¬ (x + 0 ≤ x + (- 2))
+        =⟨ “≤-Isotonicity of +”, “Symmetry of +” ⟩
+          ¬ (0 ≤ (- 2))
+        =⟨ Fact `0 ≤ - 2 ≡ false` ⟩
+          ¬ (false)
+        =⟨ “Negation of `false`” ⟩
+          true
+        
+Theorem:   (∀ x : ℤ • ∃ y : ℤ • 2 · x + y = 7 · x + 6)
+Proof:
+  For any `x`:
+      ∃ y : ℤ • 2 · x + y = 7 · x + 6
+    ⇐⟨ “∃-Introduction” ⟩
+      (2 · x + y = 7 · x + 6)[y ≔ 5 · x + 6]
+    =⟨ Substitution ⟩
+      2 · x + 5 · x + 6 = 7 · x + 6
+    =⟨ “Distributivity of · over +”, Fact `2 + 5 = 7` ⟩
+      7 · x + 6 = 7 · x + 6
+    =⟨ “Reflexivity of =” ⟩
+      true
+
+Theorem: ¬ (∃ y : ℤ • ∀ x : ℤ • x + y = 2 · x + 1)
+Proof:
+  Using “Generalised De Morgan”:
+    Subproof for `∀ y : ℤ • ∃ x : ℤ • ¬ (x + y = 2 · x + 1)`:
+      For any `y`: 
+          ∃ x : ℤ • (¬ (x + y = 2 · x + 1))
+        ⇐⟨ “∃-Introduction” ⟩
+          (¬ (x + y = 2 · x + 1))[x ≔ y]
+        =⟨ Substitution ⟩
+          ¬ (y + y = 2 · y + 1)
+        =⟨ Fact `2 = 1 + 1`, “Distributivity of · over +”, “Identity of ·”, “Identity of +” ⟩
+          ¬ (y + y + 0 = y + y + 1)
+        =⟨ “Cancellation of +”, Fact `0 = 1 ≡ false`, “Negation of `false`” ⟩
+          true
+
+Theorem “M2-3A-2-no”: ¬ (∃ i : ℤ • 11 = 3 · i)
+Proof:
+  Using “Generalised De Morgan”:
+    Subproof for `∀ i : ℤ • ¬ (11 = 3 · i)`:
+      For any `i`:
+        By cases: `i < 4`, `i ≥ 4`
+          Completeness:
+              4 ≤ i ∨ i < 4
+            =⟨ “Definition of ≤” ⟩
+              4 < i ∨ i = 4 ∨ i < 4
+            =⟨ “Trichotomy” ⟩
+              true
+          Case `i ≥ 4`: 
+              ¬ (11 = 3 · i)
+            ⇐⟨ “Symmetry of =”, “Irreflexivity of >” ⟩
+              11 < 3 · i
+            ⇐⟨ “Transitivity of < with ≤” ⟩
+              (11 < 3 · 4) ∧ (3 · 4 ≤ 3 · i) 
+            =⟨ “Monotonicity of ·” with Fact `0 < 3`⟩
+              (11 < 3 · 4) ∧ (4 ≤ i) 
+            =⟨ Assumption `i ≥ 4` ⟩
+              (11 < 3 · 4) ∧ true 
+            =⟨ Fact `11 < 3 · 4` ⟩
+              true ∧ true 
+            =⟨ “Idempotency of ∧” ⟩ 
+              true
+          Case `i < 4`:
+              ¬ (11 = 3 · i)
+            ⇐⟨ “Symmetry of =”, “Irreflexivity of <” ⟩
+              (3 · i < 11)
+            ⇐⟨ “Transitivity of ≤ with <” ⟩
+              3 · i ≤ 3 · 3 ∧ 3 · 3 < 11
+            =⟨ Fact `3 · 3 < 11` ⟩
+              3 · i ≤ 3 · 3 ∧ true
+            =⟨ “Monotonicity of ·” with Fact `0 < 3` ⟩
+              i ≤ 3 ∧ true
+            =⟨ “Less than successor” ⟩
+              i < 3 + 1 ∧ true
+            =⟨ Fact `3 + 1 = 4` ⟩
+              i < 4 ∧ true
+            =⟨ Assumption `i < 4` ⟩
+              true ∧ true
+            =⟨ “Idempotency of ∧” ⟩
+              true
+
+Theorem “M2-3B-2-no”: ¬ (∃ x : ℤ • 2 · x = 3)
+Proof:
+  Using “Generalised De Morgan”:
+    Subproof for `∀ x : ℤ • ¬ (2 · x = 3)`:
+      For any `x`:
+        By cases: `x ≤ 1`, `x > 1`
+          Completeness:
+              x ≤ 1 ∨ x > 1
+            ≡⟨ “Definition of ≤” ⟩
+              x < 1 ∨ x = 1 ∨ x > 1
+            ≡⟨ “Trichotomy” ⟩
+              true
+          Case `x ≤ 1`: 
+              ¬ (2 · x = 3)
+            ⇐⟨ “Symmetry of =”, “Irreflexivity of >” ⟩
+              2 · x < 3
+            ⇐⟨ “Transitivity of ≤ with <” ⟩
+              (2 · 1 < 3) ∧ (2 · x ≤ 2 · 1) 
+            =⟨ “Monotonicity of ·” with Fact `0 < 2`⟩
+              (2 · 1 < 3) ∧ (x ≤ 1) 
+            =⟨ Assumption `x ≤ 1` ⟩
+              (2 · 1 < 3) ∧ true 
+            =⟨ Fact `2 · 1 < 3` ⟩
+              true ∧ true 
+            =⟨ “Idempotency of ∧” ⟩ 
+              true
+          Case `x > 1`:
+              ¬ (2 · x = 3)
+            ⇐⟨ “Symmetry of =”, “Irreflexivity of <” ⟩
+              (3 < 2 · x)
+            ⇐⟨ “Transitivity of < with ≤” ⟩
+              2 · x ≥ 2 · 2 ∧ 2 · 2 > 3
+            =⟨ Fact `2 · 2 > 3` ⟩
+              2 · x ≥ 2 · 2 ∧ true
+            =⟨ “Monotonicity of ·” with Fact `0 < 2` ⟩
+              x ≥ 2 ∧ true
+            =⟨ “Identity of ∧” ⟩
+              x ≥ 2
+            =⟨ Fact `2 = 1 + 1` ⟩
+              x ≥ 1 + 1
+
+            =⟨ “At least successor” ⟩
+              x > 1
+            =⟨ Assumption `x > 1` ⟩
+              true
+            
+----------------------------------------------------------------------------------
+heorem (13.6) “Cons decomposition”:
+   ∀ xs : Seq A • xs = 𝜖  ∨  (∃ y • ∃ ys • xs = y ◃ ys)
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+          𝜖 = 𝜖  ∨  (∃ y • ∃ ys • 𝜖 = y ◃ ys)
+       ≡⟨ “Reflexivity of =”, “Zero of ∨” ⟩
+          true 
+    Induction step:
+      For any `z`:
+          z ◃ xs = 𝜖 ∨ (∃ y • (∃ ys • z ◃ xs = y ◃ ys ) )
+        ⇐⟨ “Consequence”, “Weakening”⟩
+          (∃ y • ∃ ys • z ◃ xs = y ◃ ys)
+        ⇐⟨ “Consequence”, “∃-Introduction” ⟩
+          (∃ ys • z ◃ xs = y ◃ ys)[ y ≔ z ]
+        ≡⟨ Substitution ⟩
+          (∃ ys • z ◃ xs = z ◃ ys)
+        ⇐⟨ “Consequence”, “∃-Introduction” ⟩
+          ( z ◃ xs = z ◃ ys )[ ys ≔ xs]
+        ≡⟨ Substitution ⟩
+          ( z ◃ xs = z ◃ xs ) — This is “Reflexivity of =”
+          
+   
+Theorem (13.21) “Membership in ⌢”:
+    x ∈ ys ⌢ zs  ≡  x ∈ ys ∨ x ∈ zs
+Proof:
+  By induction on `ys : Seq A`:
+    Base case:
+        x ∈ 𝜖 ⌢ zs  ≡  x ∈ 𝜖 ∨ x ∈ zs
+      ≡⟨ “Left-identity of ⌢” , “Membership in 𝜖”, “Identity of ∨” ⟩
+        x ∈ zs  ≡  x ∈ zs — This is “Reflexivity of ≡”
+    Induction step:
+      For any `y : A`:
+          x ∈ (y ◃ ys) ⌢ zs ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ “Mutual associativity of ◃ with ⌢” ⟩
+          x ∈ y ◃ (ys ⌢ zs ) ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ “Membership in ◃” ⟩
+          x = y ∨ x ∈ ( ys ⌢ zs) ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ Induction hypothesis ⟩
+          x = y ∨ x ∈ ys ∨ x ∈ zs ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ “Membership in ◃” ⟩
+          x ∈ ( y ◃ ys ) ∨ x ∈ zs ≡ x ∈ y ◃ ys ∨ x ∈ zs — This is “Reflexivity of ≡”
+
