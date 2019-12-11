@@ -1,0 +1,192 @@
+Theorem “Zero is not suc”: 0 ≠ n + 1
+Proof:
+    0 ≠ n + 1
+  ≡⟨ “Definition of ≠” ⟩
+    ¬ (0 = n + 1)
+  ≡⟨ “Zero is not suc” ⟩
+    ¬ (false)
+  ≡⟨ “Negation of `false`” ⟩
+    true
+
+Axiom “Induction over ℕ”:
+   P[n ≔ 0]
+   ⇒ (∀ n : ℕ ❙ P • P[n ≔ n + 1])
+   ⇒ (∀ n : ℕ • P)
+
+Theorem “Right-identity of +”: ∀ m : ℕ • m + 0 = m
+Proof:
+  Using “Induction over ℕ”:
+    Subproof for `(m + 0 = m)[m ≔ 0]`:
+      By substitution and “Definition of +”
+    Subproof for `∀ m : ℕ ❙ m + 0 = m • (m + 0 = m)[m ≔ m + 1]`:
+      For any `m : ℕ` satisfying `m + 0 = m`:
+          (m + 0 = m)[m ≔ m + 1]
+        =⟨ Substitution, “Definition of +” ⟩
+          (m + 0) + 1 = m + 1
+        =⟨ Assumption `m + 0 = m`, “Reflexivity of =” ⟩
+          true
+
+Theorem “Right-identity of +”: ∀ m : ℕ • m + 0 = m
+Proof:
+  Using “Induction over ℕ”:
+    Subproof for `0 + 0 = 0`:
+      By “Definition of +”
+    Subproof for `∀ m : ℕ ❙ m + 0 = m • (m + 1) + 0 = m + 1`:
+      For any `m : ℕ` satisfying `m + 0 = m`:
+          (m + 1) + 0
+        =⟨ “Definition of +” ⟩
+          (m + 0) + 1
+        =⟨ Assumption `m + 0 = m` ⟩
+          m + 1
+
+Theorem “Right-identity of +”: ∀ m : ℕ • m + 0 = m
+Proof:
+  Using “Induction over ℕ”:
+    Subproof:
+        0 + 0
+      =⟨ “Definition of +” ⟩
+        0
+    Subproof:
+      For any `m : ℕ` satisfying “IndHyp” `m + 0 = m`:
+          (m + 1) + 0
+        =⟨ “Definition of +” ⟩
+          (m + 0) + 1
+        =⟨ Assumption “IndHyp” ⟩
+          m + 1
+
+Theorem “Adding the successor”: ∀ m • m + (n + 1) = (m + n) + 1
+Proof:
+  Using “Induction over ℕ”:
+    Subproof:
+        0 + (n + 1)
+      =⟨ “Definition of +” ⟩
+        n + 1
+      =⟨ “Definition of +” ⟩
+        (0 + n) + 1
+    Subproof:
+      For any `m : ℕ` satisfying “IndHyp” `m + (n + 1) = (m + n) + 1`:
+          (m + 1) + (n + 1)
+        =⟨ “Definition of +” ⟩
+          (m + (n + 1)) + 1 
+        =⟨ Assumption “IndHyp” ⟩
+          ((m + n) + 1) + 1
+        =⟨ “Definition of +” ⟩
+          ((m + 1) + n) + 1
+
+Theorem “Adding the successor — quantified”: ∀ m • ∀ n • m + (n + 1) = (m + n) + 1
+Proof:
+  Using “Induction over ℕ”:
+    Subproof for `∀ n • 0 + (n + 1) = (0 + n) + 1`:
+      For any `n : ℕ`:
+          0 + (n + 1)
+        =⟨ “Definition of +” ⟩
+          n + 1
+        =⟨ “Definition of +” ⟩
+          (0 + n) + 1 
+    Subproof for `∀ m ❙ (∀ n • m + (n + 1) = (m + n) + 1)
+                      • (∀ n • (m + 1) + (n + 1) = ((m + 1) + n) + 1)`:
+      For any `m : ℕ` satisfying “IndHyp” `∀ n • m + (n + 1) = (m + n) + 1`:
+        For any `n : ℕ`:
+            (m + 1) + (n + 1) 
+          =⟨ “Definition of +” ⟩ 
+            (m + (n + 1)) + 1 
+          =⟨ Assumption “IndHyp” ⟩ 
+            ((m + n) + 1) + 1
+          =⟨ “Definition of +” ⟩  
+            ((m + 1) + n) + 1
+            
+ 
+Theorem “Symmetry of +”: ∀ m • m + n = n + m
+Proof:
+  Using “Induction over ℕ”:
+    Subproof for `∀ n • 0 + n = n + 0`:
+      For any `n : ℕ`:
+          0 + n
+        =⟨ “Definition of +” ⟩
+          n
+        =⟨ “Right-identity of +” ⟩
+          n + 0 
+    Subproof for `∀ m ❙ (m + n = n + m)
+                      • ((m + 1) + n = n + (m + 1))`:
+      For any `m : ℕ` satisfying “IndHyp” `m + n = n + m`:
+            (m + 1) + n 
+          =⟨ “Definition of +” ⟩ 
+            (m + n) + 1
+          =⟨ Assumption “IndHyp” ⟩ 
+            (n + m) + 1 
+          =⟨ “Adding the successor” ⟩  
+            n + (m + 1)
+
+Theorem “Symmetry of + — quantified”: ∀ m • ∀ n • m + n = n + m
+Proof:
+  Using “Induction over ℕ”:
+    Subproof for `∀ n • 0 + n = n + 0`:
+      For any `n : ℕ`:
+          0 + n
+        =⟨ “Definition of +” ⟩
+          n
+        =⟨ “Right-identity of +” ⟩
+          n + 0  
+    Subproof for `∀ m ❙ (∀ n • m + n = n + m)
+                      • (∀ n • (m + 1) + n = n + (m + 1))`:
+      For any `m : ℕ` satisfying “IndHyp” `∀ n • m + n = n + m`:
+        For any `n : ℕ`:
+            (m + 1) + n 
+          =⟨ “Definition of +” ⟩ 
+            (m + n) + 1 
+          =⟨ Assumption “IndHyp” ⟩ 
+            (n + m) + 1
+          =⟨ “Adding the successor” ⟩  
+            n + (m + 1)
+
+Theorem “Associativity of +”: ∀ k • ∀ m • ∀ n • (k + m) + n = k + (m + n)
+Proof:
+  Using “Induction over ℕ”:
+    Subproof for `∀ m • ∀ n • (0 + m) + n = 0 + (m + n)`:
+      For any `m : ℕ`:
+        For any `n : ℕ`:
+            (0 + m) + n
+          =⟨ “Definition of +” ⟩
+            m + n
+          =⟨ “Definition of +” ⟩
+            0 + (m + n)  
+    Subproof for `∀ m ❙ (∀ m • ∀ n • (k + m) + n = k + (m + n))
+                      • (∀ m • ∀ n • ((k + 1) + m) + n = (k + 1) + (m + n))`:
+      For any `m : ℕ` satisfying “IndHyp” `∀ m • ∀ n • (k + m) + n = k + (m + n)`:
+        For any `m : ℕ`:
+          For any `n : ℕ`:
+              ((k + 1) + m) + n
+            =⟨ “Definition of +” ⟩ 
+              ((k + m) + 1) + n 
+            =⟨ “Definition of +” ⟩ 
+              ((k + m) + n) + 1 
+            =⟨ Assumption “IndHyp” ⟩ 
+              (k + (m + n)) + 1 
+            =⟨ “Definition of +” ⟩  
+              (k + 1) + (m + n)
+              
+Theorem “Zero sum”: ∀ m • ∀ n • 0 = m + n  ≡  0 = m  ∧  0 = n
+Proof:
+  Using “Induction over ℕ”:
+    Subproof for `∀ n • 0 = 0 + n  ≡  0 = 0  ∧  0 = n`:
+      For any `n`:
+          0 = 0 + n
+        ≡⟨ “Identity of ∧” ⟩
+          true ∧ 0 = 0 + n
+        ≡⟨ Fact `0 = 0` ⟩
+          0 = 0 ∧ 0 = 0 + n
+        ≡⟨ “Definition of +” ⟩
+          0 = 0 ∧ 0 = n
+    Subproof for `∀ m ❙ (∀ n • 0 = m + n  ≡  0 = m  ∧  0 = n)
+                      • (∀ n • 0 = (m + 1) + n  ≡  0 = m + 1  ∧  0 = n)`:
+      For any `m : ℕ` satisfying “IndHyp” `∀ n • 0 = m + n  ≡  0 = m  ∧  0 = n`:
+        For any `n`:
+            0 = (m + 1) + n
+          ≡⟨ “Definition of +” ⟩
+            0 = (m + n) + 1
+          ≡⟨ “Zero is not suc” ⟩
+            false
+          ≡⟨ “Zero of ∧” ⟩
+            false ∧ 0 = n
+          ≡⟨ “Zero is not suc” ⟩
+            0 = m + 1 ∧  0 = n
